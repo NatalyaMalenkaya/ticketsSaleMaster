@@ -4,6 +4,9 @@ import {ITourTypeSelect} from '../../../models/tours';
 import {TicketsService} from '../../../services/tickets/tickets.service';
 import {MessageService} from "primeng/api";
 import {SettingsService} from '../../../services/settings/settings.service';
+import { subscribeOn } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+
 
 
 @Component({
@@ -26,7 +29,8 @@ export class AsideComponent implements OnInit {
 
   constructor(private ticketService: TicketsService,
               private settingsService: SettingsService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.menuTypes = [
@@ -59,5 +63,13 @@ export class AsideComponent implements OnInit {
     this.settingsService.loadUserSettingsSubject({
         saveToken: false
       });
+  }
+
+  initTours(): void {
+    this.http.get('http://localhost:3000/tours/').subscribe(() => {});
+  }
+
+  deleteTours(): void {
+    this.http.get('http://localhost:3000/tours/remove').subscribe(() => {});
   }
 }

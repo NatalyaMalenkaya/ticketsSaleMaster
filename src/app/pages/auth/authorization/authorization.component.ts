@@ -5,6 +5,8 @@ import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
 import {UserService} from '../../../../app/services/user/user.service';
 import {ConfigService} from '../../../services/config/config.service';
+import {HttpClient} from '@angular/common/http';
+import { ServerError } from 'src/app/models/error';
 
 @Component({
   selector: 'app-authorization',
@@ -21,12 +23,14 @@ export class AuthorizationComponent implements OnInit {
   cardNumber: string;
   authTextButton: string;
   useCardNumber: boolean;
+  id: number;
 
 
   constructor(private authService: AuthService,
               private router: Router,
               private messageService: MessageService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.authTextButton = "Авторизоваться";
@@ -45,18 +49,25 @@ export class AuthorizationComponent implements OnInit {
       psw : this.psw,
       login : this.login,
       cardNumber: this.cardNumber,
+      id: this.id,
     }
-    if (this.authService.checkUser(authUser)){
+  
+  this.http.post<{access_token: string}>('http://localhost:3000/users/'+authUser.login, authUser).subscribe((data) => {
+ 
+  this.userService.setUser(authUser);
+  const token: string = data.access_token;
+  this.userService.setToken(token);
+  this.userService.setToStore(token);
 
-      this.userService.setUser(authUser);
 
-      this.userService.setToken('user-private-token');
-      this.userService.setToStore('user-private-token');
+  this.router.navigate(['tickets/tickets-list']);
 
-      this.router.navigate(['tickets/tickets-list']);
-    }
-    else{
-      this.messageService.add({severity:'error', summary: 'Проверьте введенные данные'});
-    }
+}, (err)=> {
+  const ServerError = <ServerError>err.error;
+  this.messageService.add({severity:'warn', summary: ServerError.errorText});
+});
+
   }
+
+
 }
