@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import {ITour, INearestTour, ITourLocation} from '../../../models/tours';
 import {ActivatedRoute} from '@angular/router';
 import {TiсketsStorageService} from '../../../../app/services/tiсkets-storage/tiсkets-storage.service';
@@ -13,7 +13,7 @@ import {Subscription, fromEvent, forkJoin} from 'rxjs';
   templateUrl: './ticket-item.component.html',
   styleUrls: ['./ticket-item.component.scss']
 })
-export class TicketItemComponent implements OnInit, AfterViewInit {
+export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   ticket: ITour | undefined;
   user: IUser | null;
   userForm: FormGroup;
@@ -65,6 +65,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit {
       console.log('this.ticket', this.ticket)
     }
 
+
+    
   }
   ngAfterViewInit(): void {
     this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
