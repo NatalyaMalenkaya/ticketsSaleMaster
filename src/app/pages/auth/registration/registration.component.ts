@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   cardNumber: string;
   saveUserInStore: boolean;
   showCardNumber: boolean;
-  id: number;
+  //id: number;
 
   constructor(private messageService: MessageService,
               private authService: AuthService,
@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
       cardNumber: this.cardNumber,
       login: this.login,
       email: this.email,
-     id: this.id,
+     //id: this.id,
     }
 
    

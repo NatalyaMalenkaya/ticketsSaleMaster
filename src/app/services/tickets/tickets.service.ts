@@ -10,8 +10,17 @@ import {ITourTypeSelect, ICustomTicketData} from '../../models/tours'
 export class TicketsService {
   private ticketSubject = new Subject<ITourTypeSelect>();
 
+  private ticketUpdateSubject = new Subject<ITour[]>();
+  readonly ticketUpdateSubject$ = this.ticketUpdateSubject.asObservable();
+
+  updateTicketList(data: ITour[]) {
+    this.ticketUpdateSubject.next(data);
+  }
+
+
   readonly ticketType$ = this.ticketSubject.asObservable();
 
+  
   constructor(private ticketsServiceRest: TicketRestService) { }
 
  getTicketTypeObservable(): Observable<ITourTypeSelect> {

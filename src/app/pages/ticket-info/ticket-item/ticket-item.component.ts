@@ -7,6 +7,7 @@ import {UserService} from '../../../services/user/user.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TicketsService} from '../../../services/tickets/tickets.service';
 import {Subscription, fromEvent, forkJoin} from 'rxjs';
+import { IOrder } from 'src/app/models/order';
 
 @Component({
   selector: 'app-ticket-item',
@@ -91,14 +92,27 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   onSubmit(): void {
   }
-  initTour(): void {
-    const userData = this.userForm.getRawValue();
-    const postData = {...this.ticket, ...userData};
-    //console.log('postData', postData);
-    //console.log('this.userForm.getRawValue()', this.userForm.getRawValue());
-    this.ticketsService.sendTourData(postData).subscribe()
-  }
+
   selectDate(ev: Event): void {
+  };
+
+  
+    initTour(): void{
+      const userData=this.userForm.getRawValue();
+      const postData={...this.ticket, ...userData};
+      
+      const userId= this.userService.getUser()?.id || null ;
+      const postObj: IOrder = {
+        age: postData.age,
+       birthDay: postData.birthDay,
+        cardNumber: postData.cardNumber,
+        tourId: postData._id,
+        userId: userId,
+      }
+          // console.log(postData, "postData");
+          // console.log(this.userForm.getRawValue(), "this.userForm.getRawValue()");
+          this.ticketsService.sendTourData(postObj).subscribe()
+      
 
   }
 
