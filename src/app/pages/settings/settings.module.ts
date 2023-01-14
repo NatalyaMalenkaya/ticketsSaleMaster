@@ -6,20 +6,23 @@ import {TabViewModule} from "primeng/tabview";
 import {InputTextModule} from "primeng/inputtext";
 import {ToastModule} from "primeng/toast";
 import {ButtonModule} from "primeng/button";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatisticComponent} from './statistic/statistic/statistic.component';
 import {TableModule} from "primeng/table";
+import { TourLoaderComponent } from './tour-loader/tour-loader.component';
 
 
 
 @NgModule({
   declarations: [
     SettingsComponent,
-    StatisticComponent
+    StatisticComponent,
+    TourLoaderComponent
   ],
   imports: [
     CommonModule,
     SettingsRoutingModule,
+    ReactiveFormsModule,
     TabViewModule,
     InputTextModule,
     ToastModule,

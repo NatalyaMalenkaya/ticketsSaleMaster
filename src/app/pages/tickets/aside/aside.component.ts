@@ -6,6 +6,7 @@ import {MessageService} from "primeng/api";
 import {SettingsService} from '../../../services/settings/settings.service';
 import { subscribeOn } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import { ITour } from '../../../models/tours';
 
 
 
@@ -65,11 +66,14 @@ export class AsideComponent implements OnInit {
       });
   }
 
-  initTours(): void {
-    this.http.get('http://localhost:3000/tours/').subscribe(() => {});
+  initTours():void {
+    this.http.post<ITour[]>("http://localhost:3000/tours/", {}).subscribe((data)=>{
+     this.ticketService.updateTicketList(data);
+    });
   }
-
-  deleteTours(): void {
-    this.http.get('http://localhost:3000/tours/remove').subscribe(() => {});
+  deleteTours():void {
+    this.http.delete("http://localhost:3000/tours/").subscribe((data)=>{
+      this.ticketService.updateTicketList([]);
+    });
   }
 }

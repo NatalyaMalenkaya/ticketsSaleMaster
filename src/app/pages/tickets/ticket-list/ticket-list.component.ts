@@ -86,10 +86,10 @@ export class TicketListComponent implements OnInit {
               }
             
               goToTicketInfoPage(item: ITour) {
-                // this.router.navigate( ['/tickets/ticket/${item.id}'])
+                this.router.navigate( ['/tickets/ticket/${item.id}'])
                 // если пусть в роутинг модуле записан так: path: 'tickets/:id',
             
-                this.router.navigate(['/tickets/ticket'], {queryParams: {id: item.id}})
+               // this.router.navigate(['/tickets/ticket'], {queryParams: {id: item.id}})
                 // если пусть в роутинг модуле записан так: path: 'ticket',
               }
             

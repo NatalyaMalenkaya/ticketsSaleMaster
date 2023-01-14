@@ -91,6 +91,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.nearestTours = this.ticketsService.transformData([data], this.toursLocation)});
   }
   onSubmit(): void {
+    console.log('xx')
   }
 
   selectDate(ev: Event): void {
