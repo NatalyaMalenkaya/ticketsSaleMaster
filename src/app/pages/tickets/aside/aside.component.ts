@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {IMenuType} from '../../../models/menuType';
-import {ITourTypeSelect} from '../../../models/tours';
-import {TicketsService} from '../../../services/tickets/tickets.service';
+import {ITechnicTypeSelect} from '../../../models/tours';
+import {TechnicService} from '../../../services/tickets/tickets.service';
 import {MessageService} from "primeng/api";
 import {SettingsService} from '../../../services/settings/settings.service';
 import { subscribeOn } from 'rxjs';
@@ -21,14 +21,14 @@ export class AsideComponent implements OnInit {
   menuTypes: IMenuType[];
   obj = {type: 'custom', label: 'Обычное'}
   selectedMenuType: IMenuType;
-  tourTypes: ITourTypeSelect[] = [
+  technicTypes: ITechnicTypeSelect[] = [
     {label: 'Все', value: 'all'},
-    {label: 'Одиночный', value: 'single'},
-    {label: 'Групповой', value: 'multi'}
+    {label: 'Экскаватор', value: 'excavator'},
+    {label: 'Погрузчик', value: 'loader'}
   ]
   @Output() updateMenuType: EventEmitter<IMenuType> = new EventEmitter()
 
-  constructor(private ticketService: TicketsService,
+  constructor(private technicService: TechnicService,
               private settingsService: SettingsService,
               private messageService: MessageService,
               private http: HttpClient) { }
@@ -43,15 +43,15 @@ export class AsideComponent implements OnInit {
     console.log('ev', ev)
     this.updateMenuType.emit(ev.value);
   }
-  changeTourType(ev:  {ev: Event, value: ITourTypeSelect}): void {
-    this.ticketService.updateTour(ev.value)
+  changeTechnicType(ev:  {ev: Event, value: ITechnicTypeSelect}): void {
+    this.technicService.updateTechnic(ev.value)
   }
   selectDate(ev: string) {
-    this.ticketService.updateTour({date:ev})
+    this.technicService.updateTechnic({date:ev})
   }
 
   initRestError(): void {
-    this.ticketService.getError().subscribe({next: (data) => {
+    this.technicService.getError().subscribe({next: (data) => {
       },
     error:(err) => {
       this.messageService.add({severity: 'success', summary: 'Error'});
@@ -66,14 +66,14 @@ export class AsideComponent implements OnInit {
       });
   }
 
-  initTours():void {
+  initTechnics():void {
     this.http.post<ITour[]>("http://localhost:3000/tours/", {}).subscribe((data)=>{
-     this.ticketService.updateTicketList(data);
+     this.technicService.updateTicketList(data);
     });
   }
-  deleteTours():void {
+  deleteTechnics():void {
     this.http.delete("http://localhost:3000/tours/").subscribe((data)=>{
-      this.ticketService.updateTicketList([]);
+      this.technicService.updateTicketList([]);
     });
   }
 }

@@ -17,11 +17,10 @@ export class RegistrationComponent implements OnInit {
   psw: string;
   pswRepeat: string;
   email: string;
-  cardNumber: string;
+  // cardNumber: string;
   saveUserInStore: boolean;
   showCardNumber: boolean;
-  //id: number;
-
+ 
   constructor(private messageService: MessageService,
               private authService: AuthService,
               private http: HttpClient) { }
@@ -34,9 +33,10 @@ export class RegistrationComponent implements OnInit {
       this.messageService.add({severity:'error', summary:'Пароли не совпадают'});
       return false;
     }
+    
     const userObj: IUser = {
       psw: this.psw,
-      cardNumber: this.cardNumber,
+     // cardNumber: this.cardNumber,
       login: this.login,
       email: this.email,
      //id: this.id,

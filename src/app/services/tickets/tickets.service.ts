@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import {TicketRestService} from '../rest/ticket-rest.service';
 import {map, Observable, Subject} from 'rxjs';
 import {ITour, INearestTour, ITourLocation} from '../../models/tours';
-import {ITourTypeSelect, ICustomTicketData} from '../../models/tours'
+import { ITechnicTypeSelect, ICustomTicketData } from '../../models/tours';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TicketsService {
-  private ticketSubject = new Subject<ITourTypeSelect>();
+export class TechnicService {
+  private ticketSubject = new Subject<ITechnicTypeSelect>();
 
   private ticketUpdateSubject = new Subject<ITour[]>();
   readonly ticketUpdateSubject$ = this.ticketUpdateSubject.asObservable();
@@ -19,12 +19,12 @@ export class TicketsService {
   readonly ticketType$ = this.ticketSubject.asObservable();
 
   
-  constructor(private ticketsServiceRest: TicketRestService) { }
+  constructor(private TechnicServiceRest: TicketRestService) { }
 
- getTicketTypeObservable(): Observable<ITourTypeSelect> {
+ getTicketTypeObservable(): Observable<ITechnicTypeSelect> {
     return this.ticketSubject.asObservable();}
 
-  updateTour(type:ITourTypeSelect): void {
+  updateTechnic(type:ITechnicTypeSelect): void {
     this.ticketSubject.next(type);
   }
 
@@ -32,21 +32,21 @@ export class TicketsService {
     this.ticketUpdateSubject.next(data);
   }
   getTickets(): Observable<ITour[]> {
-    return this.ticketsServiceRest.getTickets().pipe(map(
+    return this.TechnicServiceRest.getTickets().pipe(map(
       (value:ITour[]) => {
-        const singleTour = value.filter((el) => el.type === "single");
+        const singleTour = value.filter((el) => el.type === "excavator");
         return value.concat(singleTour);
       }
     ))
   }
   getError(): Observable<any> {
-    return  this.ticketsServiceRest.getRestError();
+    return  this.TechnicServiceRest.getRestError();
   }
   getNearestTours(): Observable<INearestTour[]> {
-    return this.ticketsServiceRest.getNearestTickets();
+    return this.TechnicServiceRest.getNearestTickets();
   }
   getTourLocations(): Observable<ITourLocation[]> {
-    return this.ticketsServiceRest.getLocationList();
+    return this.TechnicServiceRest.getLocationList();
   }
   transformData(data: INearestTour[], regions: ITourLocation[]): ICustomTicketData[] {
     const newTicketData:  ICustomTicketData[] = [];
@@ -57,14 +57,16 @@ export class TicketsService {
     });
     return newTicketData
   }
-  getRandomNearestEvent(type: number): Observable<INearestTour> {
-    return this.ticketsServiceRest.getRandomNearestEvent(type);
+
+  getRandomNearestEvent(name: string): Observable<ITour[]> {
+    return this.TechnicServiceRest.getRandomNearestEvent(name);
   }
+ 
   sendTourData(data: any): Observable<any> {
-    return this.ticketsServiceRest.sendTourData(data);
+    return this.TechnicServiceRest.sendTourData(data);
   }
   createTour(body: any) {
-    return  this.ticketsServiceRest.createTour(body);
+    return  this.TechnicServiceRest.createTour(body);
   }
 
 }

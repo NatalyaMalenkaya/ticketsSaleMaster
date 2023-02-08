@@ -1,10 +1,9 @@
 {
-  "name": "Tour 1",
-  "description": "Discover Pearls of France & Italy",
-  "tourOperator": "Emerald Waterways",
-  "price": "€3,579",
+  "name": "Technic 1",
+  "description": "Excavator 1t",
+  "price": "16000",
   "img": "pic1.jpg",
-  "type": "multi",
-  "date": "2022-10-22",
-  "locationId": "fa51-21a5-315b-ff21"
+  "type": "excavator",
+  "date": "2022-02-10",
+  "id": "fa51-21a5-315b-ff21"
 }

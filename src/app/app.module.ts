@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RestInterceptorsService} from './services/interceptors/restinterceptors';
 import {ConfigService} from './services/config/config.service';
+import { AccountComponent } from './pages/account/account.component';
 
 function initializeApp(config: ConfigService) {
   return () => config.loadPromise().then(() => {
@@ -17,6 +18,7 @@ function initializeApp(config: ConfigService) {
 @NgModule({
   declarations: [
     AppComponent,
+    AccountComponent,
 
   ],
   imports: [

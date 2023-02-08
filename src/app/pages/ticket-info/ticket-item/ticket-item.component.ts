@@ -5,7 +5,7 @@ import {TiсketsStorageService} from '../../../../app/services/tiсkets-storage/
 import {IUser} from '../../../models/users';
 import {UserService} from '../../../services/user/user.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {TicketsService} from '../../../services/tickets/tickets.service';
+import {TechnicService} from '../../../services/tickets/tickets.service';
 import {Subscription, fromEvent, forkJoin} from 'rxjs';
 import { IOrder } from 'src/app/models/order';
 
@@ -30,7 +30,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private ticketStorage: TiсketsStorageService,
               private userService: UserService,
-              private ticketsService: TicketsService) { }
+              private TechnicService: TechnicService) { }
 
   ngOnInit(): void {
     // first get info
@@ -48,10 +48,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
     //get nearest tour
-    forkJoin([this.ticketsService.getNearestTours(), this.ticketsService.getTourLocations()]).subscribe((data) => {
+    forkJoin([this.TechnicService.getNearestTours(), this.TechnicService.getTourLocations()]).subscribe((data) => {
       this.nearestTours = data[0];
       this.toursLocation = data[1];
-      this.nearestTours = this.ticketsService.transformData(data[0], data[1]);
+      this.nearestTours = this.TechnicService.transformData(data[0], data[1]);
 
     })
 
@@ -71,25 +71,25 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   ngAfterViewInit(): void {
     this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
+
     const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
     this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
-      this.initSearchTour();
-    })
+      const tourName = ev.target.value;
+      this.initSearchTour(tourName);
+
+    });
   }
+
   ngOnDestroy(): void {
     this.searchTicketSub.unsubscribe();
   }
 
-  initSearchTour(): void {
-
-    const type = Math.floor(Math.random() * this.searchTypes.length);
-    //unsubscribe
-    if (this.ticketRestSub && !this.searchTicketSub.closed) {
-      this.ticketRestSub.unsubscribe();
-    }
-    this.ticketRestSub = this.ticketsService.getRandomNearestEvent(type).subscribe((data) => {
-      this.nearestTours = this.ticketsService.transformData([data], this.toursLocation)});
-  }
+  initSearchTour(name: string): void {
+       this.ticketRestSub = this.TechnicService.getRandomNearestEvent(name).subscribe((data) => {
+        this.nearestTours = data ;
+        });
+      }
+    
   onSubmit(): void {
     console.log('xx')
   }
@@ -112,7 +112,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       }
           // console.log(postData, "postData");
           // console.log(this.userForm.getRawValue(), "this.userForm.getRawValue()");
-          this.ticketsService.sendTourData(postObj).subscribe()
+          this.TechnicService.sendTourData(postObj).subscribe()
       
 
   }

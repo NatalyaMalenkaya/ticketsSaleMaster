@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TicketsService } from 'src/app/services/tickets/tickets.service';
+import { TechnicService } from 'src/app/services/tickets/tickets.service';
 import { ITour } from 'src/app/models/tours';
 
 @Component({
@@ -10,7 +10,7 @@ import { ITour } from 'src/app/models/tours';
 })
 export class TourLoaderComponent implements OnInit {
   tourForm: FormGroup;
-  constructor(private ticketService: TicketsService) { }
+  constructor(private technicService: TechnicService) { }
 
   ngOnInit(): void {
     this.tourForm = new FormGroup({
@@ -30,7 +30,7 @@ export class TourLoaderComponent implements OnInit {
         formParams.append( prop , tourDataRow[prop]);
       }
     }
-    this.ticketService.createTour(formParams).subscribe((data) => {});
+    this.technicService.createTour(formParams).subscribe((data) => {});
   }
 
 

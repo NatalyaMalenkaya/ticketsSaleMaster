@@ -1,16 +1,17 @@
 export interface ITour {
   name:string,
   description:string,
-  tourOperator:string,
   price:string,
   img: string,
   id: string,
   type: string,
-  date: string
-}
-export type TourType = 'Одиночный' | 'Групповой';
+  date: string,
+  locationId: string
 
-export interface ITourTypeSelect {
+}
+export type TourType = 'Экскаватор' | 'Погрузчик';
+
+export interface ITechnicTypeSelect {
   label?: string,
   value?: string,
   date?: string

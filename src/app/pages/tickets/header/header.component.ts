@@ -25,17 +25,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Билеты',
-        routerLink: ['tickets-list']
-      },
-      {
         label: 'Выйти',
         routerLink: ['/auth'],
         command: () => {
           this.userService.removeUser()
         }
 
-      }
+      },
+      {
+        label: 'Спецтехника',
+        routerLink: ['tickets-list']
+      },
+      
+
+      {
+        label: 'Личный кабинет',
+        routerLink: ['account']
+      },
+
       ];
 
     this.timerInterval = window.setInterval(() => {
@@ -59,8 +66,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   initMenuItems():MenuItem[] {
     return [
+      
       {
-        label: 'Билеты',
+        label: 'Выйти',
+        routerLink:['/auth']
+      },
+      {
+        label: 'Спецтехника',
         routerLink:['tickets-list']
       },
       {
@@ -68,9 +80,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         routerLink:['settings'],
         visible: this.settingsActive
       },
+      
+
       {
-        label: 'Выйти',
-        routerLink:['/auth']
+        label: 'Личный кабинет',
+        routerLink: ['account']
       },
 
     ];

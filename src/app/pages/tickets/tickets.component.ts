@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TicketsService} from '../../services/tickets/tickets.service';
+import {TechnicService} from '../../services/tickets/tickets.service';
 import {ITour} from '../../models/tours';
-import {IMenuType} from '../../models/menuType'
+import {IMenuType} from '../../models/menuType';
+import { TicketRestService } from 'src/app/services/rest/ticket-rest.service';
 
 
 @Component({
@@ -11,16 +12,18 @@ import {IMenuType} from '../../models/menuType'
 })
 export class TicketsComponent implements OnInit {
   tickets: ITour[];
-  selectedType: IMenuType
-  constructor(private ticketService: TicketsService) { }
+  selectedType: IMenuType;
 
-  ngOnInit(): void {
-    this.ticketService.getTickets().subscribe((data: ITour[]) => {
-      this.tickets = data;
-    })
-  }
   updateSelectedType(ev: IMenuType): void {
     this.selectedType = ev;
   }
+constructor(private ticketsRestService:  TicketRestService) { }
 
+  ngOnInit(): void {
+
+this.ticketsRestService.getTickets().subscribe((data)=>{
+  this.tickets=data;
+});
+    }
 }
+
