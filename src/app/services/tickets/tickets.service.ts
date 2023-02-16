@@ -34,7 +34,7 @@ export class TechnicService {
   getTickets(): Observable<ITour[]> {
     return this.TechnicServiceRest.getTickets().pipe(map(
       (value:ITour[]) => {
-        const singleTour = value.filter((el) => el.type === "excavator");
+        const singleTour = value.filter((el) => el.type === "single");
         return value.concat(singleTour);
       }
     ))
@@ -57,11 +57,9 @@ export class TechnicService {
     });
     return newTicketData
   }
-
-  getRandomNearestEvent(name: string): Observable<ITour[]> {
-    return this.TechnicServiceRest.getRandomNearestEvent(name);
+  getRandomNearestEvent(type: number): Observable<INearestTour> {
+    return this.TechnicServiceRest.getRandomNearestEvent(type);
   }
- 
   sendTourData(data: any): Observable<any> {
     return this.TechnicServiceRest.sendTourData(data);
   }
