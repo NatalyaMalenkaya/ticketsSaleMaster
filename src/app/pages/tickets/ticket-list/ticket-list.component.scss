@@ -21,3 +21,30 @@
   transform: scale(1.05);
   
 }
+h2 {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.search {
+  text-align: right;
+}
+
+  ul.servis {
+    margin: 0; 
+    padding: 4px; 
+    text-align: center;
+   }
+   ul.servis li {
+    display: inline-flex; 
+    
+    margin-right: 3rem;
+    margin-left: 2rem; 
+    margin-bottom: 1rem;
+    padding: 4px;
+   
+    font-size: 19px;
+    border: 1px solid #000; 
+    border-radius: 30px;
+    padding: 5px; 
+   }
+  

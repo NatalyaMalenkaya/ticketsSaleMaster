@@ -10,6 +10,13 @@ export interface ITour {
 
 }
 export type TourType = 'Экскаватор' | 'Погрузчик';
+export type WeightType = '1-тонник' | '2-тонник'| '4-тонник'| '10-тонник';
+
+export interface IWeightTypeSelect {
+  label?: string,
+  value?: string,
+  
+}
 
 export interface ITechnicTypeSelect {
   label?: string,

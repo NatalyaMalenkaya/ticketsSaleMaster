@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import {TicketRestService} from '../rest/ticket-rest.service';
 import {map, Observable, Subject} from 'rxjs';
 import {ITour, INearestTour, ITourLocation} from '../../models/tours';
-import { ITechnicTypeSelect, ICustomTicketData } from '../../models/tours';
+import { ITechnicTypeSelect, ICustomTicketData , IWeightTypeSelect} from '../../models/tours';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TechnicService {
   private ticketSubject = new Subject<ITechnicTypeSelect>();
-
+  private weightSubject = new Subject<IWeightTypeSelect>();
   private ticketUpdateSubject = new Subject<ITour[]>();
   readonly ticketUpdateSubject$ = this.ticketUpdateSubject.asObservable();
 
@@ -24,8 +24,16 @@ export class TechnicService {
  getTicketTypeObservable(): Observable<ITechnicTypeSelect> {
     return this.ticketSubject.asObservable();}
 
+    getWeightTypeObservable(): Observable<IWeightTypeSelect> {
+      return this.weightSubject.asObservable();}
+
+
   updateTechnic(type:ITechnicTypeSelect): void {
     this.ticketSubject.next(type);
+  }
+
+  updateWeight(type:IWeightTypeSelect): void {
+    this.weightSubject.next(type);
   }
 
   updateTicketList(data: ITour[]) {

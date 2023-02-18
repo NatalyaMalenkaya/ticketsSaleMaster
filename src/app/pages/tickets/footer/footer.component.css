@@ -15,11 +15,14 @@
   padding: 0;
 }
 .footer__inner{
-  background: yellow;
-  padding: .5rem 0;
+  background: #E2E3E4;
+  padding: .5rem 0;}
  
-
+.footer__logo{
+  max-height: 60px;
+  max-width: 60px;
 }
+
 .footer__block{
   margin-bottom: 0;
   padding:  0 1rem;

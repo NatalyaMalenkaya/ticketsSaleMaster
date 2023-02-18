@@ -79,7 +79,9 @@ export class TicketListComponent implements OnInit {
                   });
             
                 });
-            
+
+
+
             //  2 вариант подписки
             //     this.tourUnsubscriber = this.ticketService.getTicketTypeObservable().subscribe((data:ITourTypeSelect) => {  console.log('data', data)  });
             
@@ -95,7 +97,7 @@ export class TicketListComponent implements OnInit {
             
                   directiveRenderComplete(ev: boolean) {
                   const el: HTMLElement = this.tourWrap.nativeElement;
-                  el.setAttribute('style', 'background-color:#ebf8e1');
+                  //el.setAttribute('style', 'background-color:#ebf8e1');
                   this.blockDirective.initStyle(3);
                   this.loadCountBlock = true;
                 }

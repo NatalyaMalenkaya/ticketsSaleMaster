@@ -1,12 +1,23 @@
 <div>
-<ng-container *ngIf="loadCountBlock">
+ <!-- <ng-container *ngIf="loadCountBlock">
   <p>Количество единиц: {{tickets.length}}</p>
   <p>Активный тур: {{blockDirective.activeElementIndex}}</p>
-</ng-container>
-
-  <div>
-  <input #ticketSearch [(ngModel)]="ticketSearchValue" type="text" pInputText>
+</ng-container>  -->
+<div>
+  <p class="search">Поиск на странице   <input #ticketSearch [(ngModel)]="ticketSearchValue" type="text" pInputText></p>
   </div>
+<h2>Наши услуги</h2>
+<ul class="servis">
+  <li>Разработка котлованов</li>
+  <li>Земляные работы</li>
+  <li>Вывоз грунта</li>
+  <li>Вывоз мусора</li>
+  <li>Рытье траншей</li>
+  <li>Перевозка спецтехники</li>
+  <li>Уборка и вывоз снега</li>
+ </ul>
+ <p></p>
+  <h2>Наша техника</h2>
 <div appBlocksStyle
      *ngIf="tickets"
      #tourWrap
