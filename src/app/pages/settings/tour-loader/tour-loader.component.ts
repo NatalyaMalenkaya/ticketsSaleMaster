@@ -15,8 +15,8 @@ export class TourLoaderComponent implements OnInit {
   ngOnInit(): void {
     this.tourForm = new FormGroup({
       name:  new FormControl('', {validators: Validators.required}),
-      description: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      operator: new FormControl(),
+      tonnazh: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      type: new FormControl(),
       price: new FormControl(),
       img: new FormControl()
     })

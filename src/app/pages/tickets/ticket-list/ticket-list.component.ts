@@ -29,17 +29,17 @@ export class TicketListComponent implements OnInit {
   searchTicketSub: Subscription;
   ticketSearchValue: string;
 
-  constructor(private ticketService: TechnicService,
+  constructor(private technicService: TechnicService,
               private router: Router,
               private ticketStorage: TiсketsStorageService) { }
 
               ngOnInit(): void {
-                this.ticketService.ticketUpdateSubject$.subscribe((data)=>{
+                this.technicService.ticketUpdateSubject$.subscribe((data)=>{
                   this.tickets=data;
                 })
             
             
-                this.ticketService.getTickets().subscribe(
+                this.technicService.getTickets().subscribe(
                   (data) => {
                     this.tickets = data;
                     this.ticketsCopy = [...this.tickets];
@@ -48,7 +48,7 @@ export class TicketListComponent implements OnInit {
                 )
             //  1 вариант подписки
             
-                this.tourUnsubscriber = this.ticketService.ticketType$.subscribe((data: ITechnicTypeSelect) => {
+                this.tourUnsubscriber = this.technicService.ticketType$.subscribe((data: ITechnicTypeSelect) => {
                   console.log('data', data)
             
                   let ticketType: string;
@@ -83,7 +83,7 @@ export class TicketListComponent implements OnInit {
 
 
             //  2 вариант подписки
-            //     this.tourUnsubscriber = this.ticketService.getTicketTypeObservable().subscribe((data:ITourTypeSelect) => {  console.log('data', data)  });
+            //     this.tourUnsubscriber = this.technicService.getTicketTypeObservable().subscribe((data:ITourTypeSelect) => {  console.log('data', data)  });
             
               }
             

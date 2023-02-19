@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {IUser} from '../../../app/models/users';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ export class UserService {
   private user: IUser | null;
   private token: string | null;
 
-  constructor() {}
+  constructor(private http: HttpClient) {
+  }
+
 
   getUser(): IUser | null{
     return this.user
@@ -41,4 +44,10 @@ export class UserService {
    this.token = null;
     window.localStorage.removeItem('userToken')
   }
+
+  getUserById(userId: string) {
+    return this.http.get("http://localhost:3000/users/" + userId)
+  }
+
+
 }

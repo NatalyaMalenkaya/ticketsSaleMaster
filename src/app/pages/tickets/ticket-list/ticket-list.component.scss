@@ -8,6 +8,7 @@
   justify-content: space-between;
   & .ticket-title{
     padding: 2px;
+    text-align: center;
   }
   & img{
     height: 200px;
@@ -24,6 +25,7 @@
 h2 {
   text-align: center;
   padding-bottom: 1rem;
+  color: rgb(41, 4, 70);
 }
 .search {
   text-align: right;
@@ -41,10 +43,18 @@ h2 {
     margin-left: 2rem; 
     margin-bottom: 1rem;
     padding: 4px;
-   
+   color: rgb(41, 4, 70);
     font-size: 19px;
-    border: 1px solid #000; 
+    border: 1px solid #034429; 
     border-radius: 30px;
     padding: 5px; 
+    background-color: #5cae5c;
+    transition: all 1s ease-in-out;
    }
-  
+   ul.servis li:hover {
+    transform: translateX(20px);
+    transition: all 1s ease-in-out;
+    color: #DEEAF7;
+
+    
+  }

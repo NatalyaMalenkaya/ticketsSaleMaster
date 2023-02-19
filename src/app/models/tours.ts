@@ -1,13 +1,13 @@
 export interface ITour {
   name:string,
-  description:string,
+  tonnazh:string,
   price:string,
   img: string,
   id: string,
   type: string,
   date: string,
-  locationId: string
-
+  locationId: string,
+  
 }
 export type TourType = 'Экскаватор' | 'Погрузчик';
 export type WeightType = '1-тонник' | '2-тонник'| '4-тонник'| '10-тонник';

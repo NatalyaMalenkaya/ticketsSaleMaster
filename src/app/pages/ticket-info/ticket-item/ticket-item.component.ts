@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import {ITour, INearestTour, ITourLocation} from '../../../models/tours';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TiсketsStorageService} from '../../../../app/services/tiсkets-storage/tiсkets-storage.service';
 import {IUser} from '../../../models/users';
 import {UserService} from '../../../services/user/user.service';
@@ -8,6 +8,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TechnicService} from '../../../services/tickets/tickets.service';
 import {Subscription, fromEvent, forkJoin} from 'rxjs';
 import { IOrder } from 'src/app/models/order';
+import {MessageService} from "primeng/api";
+
 
 @Component({
   selector: 'app-ticket-item',
@@ -15,8 +17,8 @@ import { IOrder } from 'src/app/models/order';
   styleUrls: ['./ticket-item.component.scss']
 })
 export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
-  ticket: ITour | undefined;
-  user: IUser | null;
+  ticket: ITour | any;
+  user: IUser | any;
   userForm: FormGroup;
   ticketSearchValue: string;
 
@@ -30,28 +32,50 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private ticketStorage: TiсketsStorageService,
               private userService: UserService,
-              private ticketsService: TechnicService) { }
+              private technicService: TechnicService,
+              private router: Router,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
+    
     // first get info
-    this.user = this.userService.getUser();
+  //  this.user = this.userService.getUser();
+
+
+  const userId = <string>this.userService.getUser()?.id;
+
+  this.route.queryParams.subscribe((par) => {
+    // console.log('par', par)
+    const parId = par['id'];
+    this.technicService.getTicketById(parId).subscribe((data) => {
+      this.ticket = data;
+    })
+  });
+
+  this.userService.getUserById(userId).subscribe((data) => {
+    this.user = data;
+    this.userForm.controls["eMail"].setValue(this.user.email)
+    console.log(this.user?.email, "email user до загрузки формы");
+  });
+
 
     //init formGroup
 
     this.userForm = new FormGroup({
       firstName: new FormControl('', {validators: Validators.required}),
-      lastName: new FormControl('',[Validators.required, Validators.minLength(2)]),
+      workingTime: new FormControl('',[Validators.required, Validators.minLength(2)]),
       cardNumber: new FormControl(),
-      birthDay: new FormControl(''),
+      workingDay: new FormControl(''),
       age: new FormControl(),
-      citizen: new FormControl('')
+      workingLocation: new FormControl('')
+
     })
 
     //get nearest tour
-    forkJoin([this.ticketsService.getNearestTours(), this.ticketsService.getTourLocations()]).subscribe((data) => {
+    forkJoin([this.technicService.getNearestTours(), this.technicService.getTourLocations()]).subscribe((data) => {
       this.nearestTours = data[0];
       this.toursLocation = data[1];
-      this.nearestTours = this.ticketsService.transformData(data[0], data[1]);
+      this.nearestTours = this.technicService.transformData(data[0], data[1]);
 
     })
 
@@ -69,27 +93,29 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     
   }
+
   ngAfterViewInit(): void {
-    this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
+    this.userForm.controls["eMail"].setValue(this.user?.email);
+
     const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
     this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
-      this.initSearchTour();
-    })
+      const tourName = ev.target.value;
+      this.initSearchTour(tourName);
+    });
   }
+
   ngOnDestroy(): void {
     this.searchTicketSub.unsubscribe();
   }
 
-  initSearchTour(): void {
-
-    const type = Math.floor(Math.random() * this.searchTypes.length);
-    //unsubscribe
-    if (this.ticketRestSub && !this.searchTicketSub.closed) {
-      this.ticketRestSub.unsubscribe();
-    }
-    this.ticketRestSub = this.ticketsService.getRandomNearestEvent(type).subscribe((data) => {
-      this.nearestTours = this.ticketsService.transformData([data], this.toursLocation)});
+  
+  initSearchTour(name: string): void {
+    this.ticketRestSub = this.technicService.getRandomNearestEvent(name).subscribe((data) => {
+      this.nearestTours = data;
+    });
   }
+
+
   onSubmit(): void {
     console.log('xx')
   }
@@ -105,17 +131,32 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       const userId= this.userService.getUser()?.id || null ;
       const postObj: IOrder = {
         age: postData.age,
-       birthDay: postData.birthDay,
+       workingDay: postData.workingDay,
         cardNumber: postData.cardNumber,
-        tourId: postData._id,
+        tourId: postData.id,
         userId: userId,
+  
       }
           // console.log(postData, "postData");
           // console.log(this.userForm.getRawValue(), "this.userForm.getRawValue()");
-          this.ticketsService.sendTourData(postObj).subscribe()
+          this.technicService.sendTourData(postObj).subscribe()
+   
+          
+         this.userForm.valueChanges.subscribe((v) => {
+          })
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Спасибо за Вашу заявку! Мы свяжемся с Вами в ближайшее время.'
+          });
+          this.userForm.reset();
+        }
       
-
-  }
-
+        goToTicketInfoPage(tour: ITour) {
+          this.router.navigate(['/tickets/ticket'], {
+              queryParams: {id: tour.id},
+              relativeTo: this.route
+            }
+          );
+        }
+      
 }
-

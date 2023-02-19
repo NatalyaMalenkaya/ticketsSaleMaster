@@ -12,10 +12,6 @@ export class TechnicService {
   private weightSubject = new Subject<IWeightTypeSelect>();
   private ticketUpdateSubject = new Subject<ITour[]>();
   readonly ticketUpdateSubject$ = this.ticketUpdateSubject.asObservable();
-
-
-
-
   readonly ticketType$ = this.ticketSubject.asObservable();
 
   
@@ -51,7 +47,7 @@ export class TechnicService {
     return  this.TechnicServiceRest.getRestError();
   }
   getNearestTours(): Observable<INearestTour[]> {
-    return this.TechnicServiceRest.getNearestTickets();
+    return this.TechnicServiceRest.getNearestTours();
   }
   getTourLocations(): Observable<ITourLocation[]> {
     return this.TechnicServiceRest.getLocationList();
@@ -65,12 +61,23 @@ export class TechnicService {
     });
     return newTicketData
   }
-  getRandomNearestEvent(type: number): Observable<INearestTour> {
-    return this.TechnicServiceRest.getRandomNearestEvent(type);
+  
+  getRandomNearestEvent(name: string): Observable<ITour[]> {
+    return this.TechnicServiceRest.getRandomNearestEvent(name);
   }
+ 
   sendTourData(data: any): Observable<any> {
     return this.TechnicServiceRest.sendTourData(data);
   }
+
+
+
+  getTicketById(id: string): Observable<ITour> {
+    return this.TechnicServiceRest.getTicketById(id);
+  }
+
+
+
   createTour(body: any) {
     return  this.TechnicServiceRest.createTour(body);
   }

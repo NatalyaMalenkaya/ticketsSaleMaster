@@ -1,6 +1,6 @@
 export interface IOrder {
     age: string | null,
-    birthDay: string | null,
+    workingDay: string | null,
     cardNumber: string,
     tourId: string | null,
     userId: string | null,

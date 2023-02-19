@@ -8,6 +8,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RestInterceptorsService} from './services/interceptors/restinterceptors';
 import {ConfigService} from './services/config/config.service';
 import { AccountComponent } from './pages/account/account.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 function initializeApp(config: ConfigService) {
   return () => config.loadPromise().then(() => {
@@ -25,7 +26,8 @@ function initializeApp(config: ConfigService) {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     ConfigService,
