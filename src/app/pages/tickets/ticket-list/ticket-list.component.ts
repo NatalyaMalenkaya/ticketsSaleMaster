@@ -53,24 +53,44 @@ export class TicketListComponent implements OnInit {
             
                   let ticketType: string;
                   switch (data.value) {
-                    case "single":
-                      this.tickets = this.ticketsCopy.filter((el) => el.type === "single");
+                    case "excavator":
+                      this.tickets = this.ticketsCopy.filter((el) => el.type === "excavator");
                       break;
-                    case "multi":
-                      this.tickets = this.ticketsCopy.filter((el) => el.type === "multi");
+                    case "loader":
+                      this.tickets = this.ticketsCopy.filter((el) => el.type === "loader");
                       break;
                     case "all":
                       this.tickets = [...this.ticketsCopy];
                       break;
             
                   }
+                  
+
                   if (data.date) {
                     const dateWithoutTime = new Date(data.date).toISOString().split('T');
                     const dateValue = dateWithoutTime[0]
                     console.log('dateValue', dateValue)
                     this.tickets = this.ticketsCopy.filter((el) => el.date === dateValue);
                   }
+                  let weightType: string;
+                  switch (data.value) {
+                    case "1t":
+                      this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "1t");
+                      break;
+                      case "4t":
+                        this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "4t");
+                        break;
+                        case "7t":
+                          this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "7t");
+                          break;
+                          case "10t":
+                            this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "10t");
+                            break;
+                    case "all":
+                      this.tickets = [...this.ticketsCopy];
+                      break;
             
+                  }
                   setTimeout(() => {
             
                     this.blockDirective.updateItems();

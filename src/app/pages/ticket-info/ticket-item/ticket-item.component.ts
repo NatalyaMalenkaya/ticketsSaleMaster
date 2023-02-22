@@ -17,7 +17,7 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./ticket-item.component.scss']
 })
 export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
-  ticket: ITour | any;
+  ticket: ITour | undefined;
   user: IUser | any;
   userForm: FormGroup;
   ticketSearchValue: string;

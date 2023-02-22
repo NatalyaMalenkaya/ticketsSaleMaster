@@ -24,26 +24,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.items = [
+      
       {
         label: 'Выйти',
-        routerLink: ['/auth'],
-        command: () => {
-          this.userService.removeUser()
-        }
-
+        routerLink:['/auth']
       },
       {
         label: 'Спецтехника',
-        routerLink: ['tickets-list']
+        routerLink:['tickets-list']
       },
-      
-
+      {
+        label: 'Настройки',
+        routerLink:['settings'],
+        //visible: this.settingsActive
+      },   
       {
         label: 'Личный кабинет',
         routerLink: ['account']
       },
 
-      ];
+    ];
 
     this.timerInterval = window.setInterval(() => {
       this.time = new Date();
@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       window.clearInterval(this.timerInterval);
     }
   }
-  ngOnChanges(ev: SimpleChanges): void {
+ /* ngOnChanges(ev: SimpleChanges): void {
     if (ev['menuType']) {
       this.settingsActive = this.menuType?.type === "extended";
     this.items = this.initMenuItems();}
@@ -88,5 +88,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
 
     ];
-  }
+  }*/
+
 }
