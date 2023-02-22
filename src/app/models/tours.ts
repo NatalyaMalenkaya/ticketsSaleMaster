@@ -10,7 +10,7 @@ export interface ITour {
   
 }
 export type TourType = 'Экскаватор' | 'Погрузчик';
-export type WeightType = '1-тонник' | '2-тонник'| '4-тонник'| '10-тонник';
+export type WeightType = '1-тонник' | '4-тонник'| '7-тонник'| '10-тонник';
 
 export interface IWeightTypeSelect {
   label?: string,
@@ -23,6 +23,8 @@ export interface ITechnicTypeSelect {
   value?: string,
   date?: string
 }
+
+
 
 export interface INearestTour extends ITour {
   locationId: string

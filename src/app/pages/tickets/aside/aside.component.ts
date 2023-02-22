@@ -10,26 +10,28 @@ import { ITour } from '../../../models/tours';
 
 
 
+
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
-  styleUrls: ['./aside.component.css']
+  styleUrls: ['./aside.component.scss']
 })
 @Output()
 
 export class AsideComponent implements OnInit {
-  menuTypes: IMenuType[];
-  obj = {type: 'custom', label: 'Обычное'}
-  selectedMenuType: IMenuType;
+ //menuTypes: IMenuType[];
+ //obj = {type: 'custom', label: 'Обычное'}
+//  selectedMenuType: IMenuType;
   technicTypes: ITechnicTypeSelect[] = [
     {label: 'Все', value: 'all'},
     {label: 'Экскаватор', value: 'excavator'},
     {label: 'Погрузчик', value: 'loader'}
   ];
   weightTypes: IWeightTypeSelect[] = [
+    {label: 'Все', value: 'all'},
     {label: '1-тонник', value: '1t'},
-    {label: '2-тонник', value: '2t'},
     {label: '4-тонник', value: '4t'},
+    {label: '7-тонник', value: '7t'},
     {label: '10-тонник', value: '10t'}
   ]
 
@@ -41,9 +43,10 @@ export class AsideComponent implements OnInit {
   constructor(private technicService: TechnicService,
               private settingsService: SettingsService,
               private messageService: MessageService,
-              private http: HttpClient) { }
+              private http: HttpClient
+              ) { }
 
-  ngOnInit(): void {
+  /*ngOnInit(): void {
     this.menuTypes = [
       {type: 'custom', label : 'Обычное'},
       {type: 'extended', label : 'Расширенное'}
@@ -52,7 +55,7 @@ export class AsideComponent implements OnInit {
   changeType(ev: {ev: Event, value: IMenuType}): void {
     console.log('ev', ev)
     this.updateMenuType.emit(ev.value);
-  }
+  }*/
   changeTechnicType(ev:  {ev: Event, value: ITechnicTypeSelect}): void {
     this.technicService.updateTechnic(ev.value)
   }
@@ -85,6 +88,9 @@ export class AsideComponent implements OnInit {
      this.technicService.updateTicketList(data);
     });
   }
+
+
+
   deleteTechnics():void {
     this.http.delete("http://localhost:3000/tours/").subscribe((data)=>{
       this.technicService.updateTicketList([]);
