@@ -2,11 +2,8 @@
 
    <!-- <a routerLink="/tickets/tickets-list">Назад</a>-->
     <div class="mt-4">
-      <h4>Информация о туре</h4>
-      <div class="ticket-info">
-
-      </div>
-
+      <div>{{ticket?.type}}</div>
+  
 <!--
       <div class="m-1">
         <h5 class="ticket-info-name p-1 fw-bold">Тур «{{ticket?.name}}»</h5>
@@ -89,7 +86,7 @@
           </ng-template>
         </p-carousel>
       </div>
-    </div>
+  
   </div>
 
 <ng-template #userFieldTitle let-value="titleValue">

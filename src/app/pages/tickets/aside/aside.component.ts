@@ -35,6 +35,7 @@ export class AsideComponent implements OnInit {
     {label: '10-тонник', value: '10t'}
   ]
 
+ 
 
 
 
@@ -63,6 +64,9 @@ export class AsideComponent implements OnInit {
   changeWeightType(ev:  {ev: Event, value: IWeightTypeSelect}): void {
     this.technicService.updateTechnic(ev.value)
   }
+
+  
+
   /*selectDate(ev: string) {
     this.technicService.updateTechnic({date:ev})
   }*/

@@ -63,10 +63,9 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.userForm = new FormGroup({
       firstName: new FormControl('', {validators: Validators.required}),
-      workingTime: new FormControl('',[Validators.required, Validators.minLength(2)]),
       cardNumber: new FormControl(),
+      workingTime: new FormControl('',[Validators.required, Validators.minLength(2)]),
       workingDay: new FormControl(''),
-      age: new FormControl(),
       workingLocation: new FormControl('')
 
     })
@@ -104,6 +103,9 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+
+
+  
   ngOnDestroy(): void {
     this.searchTicketSub.unsubscribe();
   }
@@ -117,7 +119,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onSubmit(): void {
-    console.log('xx')
+   
   }
 
   selectDate(ev: Event): void {
@@ -130,12 +132,26 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       
       const userId= this.userService.getUser()?.id || null ;
       const postObj: IOrder = {
-        age: postData.age,
-       workingDay: postData.workingDay,
-        cardNumber: postData.cardNumber,
+        firstName: postData.firstName,
+       // lastName: postData.lastName,
+       cardNumber: postData.cardNumber,
+        workingTime: postData.workingTime,
+        
+        workingDay: postData.workingDay,
+        workingLocation: postData.workingLocation,
+        
         tourId: postData.id,
         userId: userId,
   
+        
+
+       // name: postData.name,
+       // price: postData.price,
+       // type: postData.type,
+       // tonnazh: postData.tonnazh,
+  
+
+
       }
           // console.log(postData, "postData");
           // console.log(this.userForm.getRawValue(), "this.userForm.getRawValue()");

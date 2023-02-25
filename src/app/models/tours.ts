@@ -24,6 +24,12 @@ export interface ITechnicTypeSelect {
   date?: string
 }
 
+/*export interface IPriceTypeSelect {
+  priceMin?:any,
+  priceMax?:any,
+}*/
+
+
 
 
 export interface INearestTour extends ITour {
