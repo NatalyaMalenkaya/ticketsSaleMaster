@@ -1,0 +1,25 @@
+<h2>Оставить отзыв</h2>
+<div>
+  <span class="mx-3 style_reg">Ваше имя</span>
+  <input type="text"
+        class="mx-3"
+         class="style_inp_1"
+         pInputText
+         
+         [(ngModel)]="name"/>
+</div>
+  <div>
+    <span class="mx-3 style_reg">Ваш отзыв</span>
+    <input type="text"
+          class="mx-3"
+           class="style_inp_1"
+           pInputText
+           
+           [(ngModel)]="feedback"/>
+  </div>
+
+<div class="mt-5 d-flex justify-content-center ">
+  <button 
+          (click)="sendFeedback($event)"
+          type="button" class="btn btn-success">Отправить отзыв</button>
+</div>

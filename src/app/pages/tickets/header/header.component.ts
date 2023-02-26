@@ -39,8 +39,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         //visible: this.settingsActive
       },   
       {
-        label: 'Личный кабинет',
-        routerLink: ['account']
+        label: 'Отзывы',
+        routerLink: ['feedback']
       },
 
     ];
@@ -83,8 +83,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       
 
       {
-        label: 'Личный кабинет',
-        routerLink: ['account']
+        label: 'Отзывы',
+        routerLink: ['feedback']
       },
 
     ];

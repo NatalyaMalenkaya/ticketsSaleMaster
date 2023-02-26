@@ -63,7 +63,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.userForm = new FormGroup({
       firstName: new FormControl('', {validators: Validators.required}),
-      cardNumber: new FormControl(),
+      cardNumber: new FormControl(this.user?.cardNumber),
       workingTime: new FormControl('',[Validators.required, Validators.minLength(2)]),
       workingDay: new FormControl(''),
       workingLocation: new FormControl('')
@@ -94,13 +94,14 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.userForm.controls["eMail"].setValue(this.user?.email);
+   
+    this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
 
-    const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
-    this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
-      const tourName = ev.target.value;
-      this.initSearchTour(tourName);
-    });
+   // const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
+   // this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
+   //   const tourName = ev.target.value;
+  //    this.initSearchTour(tourName);
+  //  });
   }
 
 

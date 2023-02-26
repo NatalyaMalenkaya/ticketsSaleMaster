@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {TicketsComponent} from './tickets.component'
 import {TicketListComponent} from './ticket-list/ticket-list.component'
-import { AccountComponent } from '../account/account.component';
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 const routes: Routes = [
   {
@@ -21,9 +21,13 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule)
+      },
+      {
+        path: 'feedback',
+        loadChildren: () => import('../feedback/feedback.module').then(m => m.FeedbackModule)
       }]
   },
-  {path: '**', component: AccountComponent}
+  {path: '**', component: FeedbackComponent}
 ]
 
 @NgModule({
