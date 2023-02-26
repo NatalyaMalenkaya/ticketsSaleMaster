@@ -12,6 +12,6 @@ export class StatisticRestService {
   constructor(private http: HttpClient) { }
 
   getUserStatistic(): Observable<IStatisticUser[]> {
-    return this.http.get<IStatisticUser[]>("https://jsonplaceholder.typicode.com/users");
+    return this.http.get<IStatisticUser[]>("http://localhost:3000/orders/");
   }
 }

@@ -11,10 +11,10 @@ import {StatisticService} from '../../../../services/statistic/statistic.service
 export class StatisticComponent implements OnInit {
  cols = [
    {field: 'name', header: 'Имя'},
-   {field: 'company', header: 'Имя'},
-   {field: 'phone', header: 'Телефон'},
-   {field: 'city', header: 'Город'},
-   {field: 'street', header: 'Улица'}
+   {field: 'cardNumber', header: 'Номер карты'},
+   {field: 'workingTime', header: 'Срок выполнения'},
+   {field: 'workingDay', header: 'Дата выполнения'},
+   {field: 'workingLocation', header: 'Место выполнения'}
  ];
  users: ICustomStatisticUser[];
 
