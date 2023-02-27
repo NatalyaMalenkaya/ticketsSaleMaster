@@ -170,8 +170,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       
         goToTicketInfoPage(tour: ITour) {
           this.router.navigate(['/tickets/ticket'], {
-              queryParams: {id: tour.id},
-              relativeTo: this.route
+             queryParams: {id: tour.id},
+             relativeTo: this.route
             }
           );
         }

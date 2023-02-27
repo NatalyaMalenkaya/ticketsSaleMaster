@@ -1,5 +1,33 @@
 h2 {
-    text-align: center;
+    text-align: left;
     padding-bottom: 1rem;
     color: rgb(41, 4, 70);
+  }
+  .pole_vvoda{
+    height: 100px;
+    width: 400px;
+    margin-top: 1rem;
+  }
+  .wrapper_feedb{
+    display: inline-block;
+   // align-items: center;
+  }
+  .feedback_style1{
+    align-items: end;
+    margin-top: 2rem;
+    padding: 1rem;
+    text-align: justify;
+    color: #231b1c;
+    border: 1px solid gray;
+    border-radius: .5rem;
+    background-color: #b5b5ed;
+    opacity: .9;
+    height: 150px;
+    width: 350px;
+  }
+  .feedbacks{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
