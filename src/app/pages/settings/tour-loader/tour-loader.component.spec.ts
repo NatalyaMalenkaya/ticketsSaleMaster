@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/*import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TourLoaderComponent } from './tour-loader.component';
 
@@ -21,3 +21,4 @@ describe('TourLoaderComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+*/

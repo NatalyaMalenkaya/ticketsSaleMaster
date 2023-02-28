@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {TicketsComponent} from './tickets.component'
 import {TicketListComponent} from './ticket-list/ticket-list.component'
 import { FeedbackComponent } from '../feedback/feedback.component';
+import { ForAdminComponent } from '../for-admin/for-admin.component';
 
 const routes: Routes = [
   {
@@ -25,9 +26,13 @@ const routes: Routes = [
       {
         path: 'feedback',
         loadChildren: () => import('../feedback/feedback.module').then(m => m.FeedbackModule)
+      },
+      {
+        path: 'for-admin',
+        loadChildren: () => import('../for-admin/for-admin.module').then(m => m.ForAdminModule)
       }]
   },
-  {path: '**', component: FeedbackComponent}
+  {path: '**', component: ForAdminComponent}
 ]
 
 @NgModule({

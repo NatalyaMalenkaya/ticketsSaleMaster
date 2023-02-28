@@ -34,14 +34,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         routerLink:['tickets-list']
       },
       {
-        label: 'Настройки',
+        label: 'Отзывы',
+        routerLink: ['feedback']
+      },
+      {
+        label: 'Личный кабинет',
         routerLink:['settings'],
         //visible: this.settingsActive
       },   
       {
-        label: 'Отзывы',
-        routerLink: ['feedback']
-      },
+        label: 'Настройки',
+        routerLink:['for-admin'],
+        //visible: false
+      }, 
 
     ];
 
@@ -76,7 +81,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         routerLink:['tickets-list']
       },
       {
-        label: 'Настройки',
+        label: 'Личный кабинет',
         routerLink:['settings'],
         visible: this.settingsActive
       },

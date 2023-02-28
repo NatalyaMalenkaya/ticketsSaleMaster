@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'feedback',
     loadChildren: () => import('./pages/feedback/feedback.module').then(m => m.FeedbackModule)
   },
+  {
+    path: 'for-admin',
+    loadChildren: () => import('./pages/for-admin/for-admin.module').then(m => m.ForAdminModule)
+  },
   { path: '**',
    redirectTo: 'auth'
   }

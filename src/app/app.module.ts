@@ -10,6 +10,7 @@ import {ConfigService} from './services/config/config.service';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
 function initializeApp(config: ConfigService) {
   return () => config.loadPromise().then(() => {
     console.log('---CONFIG LOADED--', ConfigService.config)

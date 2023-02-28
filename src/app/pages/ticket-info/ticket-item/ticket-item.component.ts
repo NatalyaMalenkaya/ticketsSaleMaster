@@ -21,6 +21,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   user: IUser | any;
   userForm: FormGroup;
   ticketSearchValue: string;
+  
 
   nearestTours: INearestTour[];
   toursLocation: ITourLocation[];

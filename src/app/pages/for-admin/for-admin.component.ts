@@ -1,14 +1,14 @@
-/*import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TechnicService } from 'src/app/services/tickets/tickets.service';
 import { ITour } from 'src/app/models/tours';
 
 @Component({
-  selector: 'app-tour-loader',
-  templateUrl: './tour-loader.component.html',
-  styleUrls: ['./tour-loader.component.scss']
+  selector: 'app-for-admin',
+  templateUrl: './for-admin.component.html',
+  styleUrls: ['./for-admin.component.scss']
 })
-export class TourLoaderComponent implements OnInit {
+export class ForAdminComponent implements OnInit {
   tourForm: FormGroup;
   constructor(private technicService: TechnicService) { }
 
@@ -44,4 +44,3 @@ export class TourLoaderComponent implements OnInit {
   }
 }
 
-*/

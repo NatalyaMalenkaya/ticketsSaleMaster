@@ -17,7 +17,7 @@ export class TicketListComponent implements OnInit {
   ticketsCopy: ITour[];
   loadCountBlock = false;
   defaultDate: string;
-
+  
 
   @ViewChild('tourWrap', {read: BlocksStyleDirective}) blockDirective: BlocksStyleDirective
 

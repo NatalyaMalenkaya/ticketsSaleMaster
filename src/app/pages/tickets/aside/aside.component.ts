@@ -9,8 +9,6 @@ import {HttpClient} from '@angular/common/http';
 import { ITour } from '../../../models/tours';
 
 
-
-
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
