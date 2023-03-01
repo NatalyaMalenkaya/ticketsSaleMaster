@@ -19,3 +19,16 @@ h5{
 .mt4{
     text-align: center;
 }
+.img_style1{
+    width: 50%;
+    height: 50%;
+    border-radius: 50px; 
+}
+.wrapflex{
+    display: flex;
+    flex-direction: row;
+    //flex-wrap: wrap;
+}
+.block{
+    width:640px;
+}

@@ -10,6 +10,7 @@ import {StatisticService} from '../../../../services/statistic/statistic.service
 })
 export class StatisticComponent implements OnInit {
  cols = [
+   {field: 'techName', header: 'Наименование спецтехники'},
    {field: 'name', header: 'Имя'},
    {field: 'cardNumber', header: 'Номер карты'},
    {field: 'workingTime', header: 'Срок выполнения'},

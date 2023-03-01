@@ -16,7 +16,7 @@ const routes: Routes = [
         component: TicketListComponent
       },
       {
-        path: 'ticket/:id',
+        path: 'ticket',
         loadChildren: () => import('../ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
       },
       {

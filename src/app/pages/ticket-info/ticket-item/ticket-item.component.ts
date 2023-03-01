@@ -63,6 +63,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     //init formGroup
 
     this.userForm = new FormGroup({
+      techName: new FormControl('', {validators: Validators.required}),
       firstName: new FormControl('', {validators: Validators.required}),
       cardNumber: new FormControl(this.user?.cardNumber),
       workingTime: new FormControl('',[Validators.required, Validators.minLength(2)]),
@@ -80,15 +81,17 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
    // params
-    const routeIdParam = this.route.snapshot.paramMap.get('id');
-    const queryIdParam = this.route.snapshot.queryParamMap.get('id');
+   const routeIdParam = this.route.snapshot.paramMap.get('id'); //for route
+   const queryIdParam = this.route.snapshot.queryParamMap.get('id');
+   const paramValueId = routeIdParam || queryIdParam;
+   if (paramValueId) {
+     this.technicService.getTicketById(paramValueId).subscribe((data) => {
+       this.ticket = data;
+     })
+     // const ticketStorage= this.ticketStorage.getStorage();
+     // this.ticket = ticketStorage.find((el) => el.id === paramValueId);
+   }
 
-    const paramValueId = routeIdParam || queryIdParam;
-    if(paramValueId) {
-      const ticketStorage = this.ticketStorage.getStorage();
-      this.ticket = ticketStorage.find((el) => el.id === paramValueId);
-      console.log('this.ticket', this.ticket)
-    }
 
 
     
@@ -134,6 +137,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       
       const userId= this.userService.getUser()?.id || null ;
       const postObj: IOrder = {
+        techName: postData.techName,
         firstName: postData.firstName,
        // lastName: postData.lastName,
        cardNumber: postData.cardNumber,
@@ -169,12 +173,21 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
           this.userForm.reset();
         }
       
-        goToTicketInfoPage(tour: ITour) {
-          this.router.navigate(['/tickets/ticket'], {
-             queryParams: {id: tour.id},
-             relativeTo: this.route
-            }
-          );
-        }
-      
-}
+       // goToTicketInfoPage(tour: ITour) {
+      //    this.router.navigate(['/tickets/ticket/${item.id}'], {
+
+            // queryParams: {id: tour.id},
+            // relativeTo: this.route
+
+        //    }
+       //   );
+      //  }
+
+      goToTicketInfoPage(tour: ITour) {
+        this.router.navigate(['/tickets/ticket'], {
+            queryParams: {id: tour._id},
+            relativeTo: this.route
+          }
+        );
+      }
+    }

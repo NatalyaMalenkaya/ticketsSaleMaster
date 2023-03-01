@@ -2,8 +2,10 @@ export interface ITour {
   name:string,
   tonnazh:string,
   price:string,
+  description: string,
   img: string,
   id: string,
+  _id: string;
   type: string,
   date: string,
   locationId: string,

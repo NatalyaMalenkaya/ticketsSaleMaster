@@ -18,6 +18,7 @@ export class ForAdminComponent implements OnInit {
       tonnazh: new FormControl('', [Validators.required, Validators.minLength(2)]),
       type: new FormControl(),
       price: new FormControl(),
+      description: new FormControl('', [Validators.required, Validators.minLength(2)]),
       img: new FormControl()
     })
   }

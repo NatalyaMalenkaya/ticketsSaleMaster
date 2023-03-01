@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} fro
 import {TechnicService} from "../../../services/tickets/tickets.service";
 import {ITour} from '../../../models/tours';
 import { TiсketsStorageService } from 'src/app/services/tiсkets-storage/tiсkets-storage.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BlocksStyleDirective} from '../../../directive/blocks-style.directive';
 import {Subscription, fromEvent, debounceTime} from 'rxjs';
 import {ITechnicTypeSelect} from '../../../models/tours'
@@ -31,6 +31,7 @@ export class TicketListComponent implements OnInit {
 
   constructor(private technicService: TechnicService,
               private router: Router,
+              private route: ActivatedRoute,
               private ticketStorage: TiсketsStorageService) { }
 
               ngOnInit(): void {
@@ -108,10 +109,10 @@ export class TicketListComponent implements OnInit {
               }
             
               goToTicketInfoPage(item: ITour) {
-                this.router.navigate( ['/tickets/ticket/${item.id}'])
+               // this.router.navigate( ['/tickets/ticket/${item.id}'])
                 // если пусть в роутинг модуле записан так: path: 'tickets/:id',
             
-               // this.router.navigate(['/tickets/ticket'], {queryParams: {id: item.id}})
+               this.router.navigate(['/tickets/ticket'], {queryParams: {id: item._id}})
                 // если пусть в роутинг модуле записан так: path: 'ticket',
               }
             

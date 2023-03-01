@@ -1,12 +1,28 @@
 <div class="ticket-info-wrap">
 
-   <!-- <a routerLink="/tickets/tickets-list">Назад</a>-->
-<div>{{ticket?.price}}</div>
+<div class="wrapflex">
+
+
+<div class="block">
+<h4>Информация о спецтехнике</h4>
+  <!-- <a routerLink="/tickets/tickets-list">Назад</a>-->
+<div class="mt-3">{{ticket?.name}}</div>
+<div class="mt-3">{{ticket?.description}}</div>
+<img class="img_style1" alt="ticket-img" src="http://localhost:3000/public/{{ticket?.img}}">
+</div>
     
-      <div class="mt-4">
+      <div class="block">
         <h4>Оставить заявку на бронирование</h4>
         <div class="mt-3 user-info" [formGroup]="userForm" (ngSubmit)="onSubmit()">
           <div class="mt-3">
+
+            <div>
+              <span class="mx-3">Наименование спецтехники</span>
+              <input type="text"
+                     class="mt-3"
+                     pInputText
+                     formControlName="techName">
+            </div>
             <!--<span class="mx-3">Имя</span>-->
             <ng-container *ngTemplateOutlet="userFieldTitle; context:{titleValue: 'Введите свое имя'}"></ng-container>
             <input type="text"
@@ -14,6 +30,7 @@
                    pInputText
                    formControlName="firstName">
           </div>
+          
           <div>
             <span class="mx-3">Введите свой номер карты</span>
             <input type="text"
@@ -64,6 +81,11 @@
 
         </div>
       </div>
+
+
+    </div>
+
+
       <div class="mt4">
         <h5>Также вы можете забронировать</h5>
        <!-- <div>
