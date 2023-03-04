@@ -49,49 +49,53 @@ export class TicketListComponent implements OnInit {
                 )
             //  1 вариант подписки
             
-                this.tourUnsubscriber = this.technicService.ticketType$.subscribe((data: ITechnicTypeSelect) => {
-                  console.log('data', data)
-            
+                this.tourUnsubscriber = this.technicService.ticketType$.subscribe((dataValue: {type: any, weight: any}) => {
+                  console.log('data', dataValue)
+                  let data = this.ticketsCopy;
+                  console.log('this.ticketsCopy', this.ticketsCopy);
+                  
                   let ticketType: string;
-                  switch (data.value) {
+                  switch (dataValue.type.value) {
                     case "excavator":
-                      this.tickets = this.ticketsCopy.filter((el) => el.type === "excavator");
+                      data = data.filter((el) => el.type === "excavator");
                       break;
                     case "loader":
-                      this.tickets = this.ticketsCopy.filter((el) => el.type === "loader");
+                     data= data.filter((el) => el.type === "loader");
                       break;
                     case "all":
-                      this.tickets = [...this.ticketsCopy];
+                      data = [...data];
                       break;
             
                   }
                   
 
-                  if (data.date) {
+            /*      if (dataValue.date) {
                     const dateWithoutTime = new Date(data.date).toISOString().split('T');
                     const dateValue = dateWithoutTime[0]
                     console.log('dateValue', dateValue)
                     this.tickets = this.ticketsCopy.filter((el) => el.date === dateValue);
-                  }
+                  }*/
                   let weightType: string;
-                  switch (data.value) {
+                  switch (dataValue.weight.value) {
                     case "1t":
-                      this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "1t");
+                      data= data.filter((el) => el.tonnazh === "1t");
                       break;
                       case "4t":
-                        this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "4t");
+                        data = data.filter((el) => el.tonnazh === "4t");
                         break;
                         case "7t":
-                          this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "7t");
+                          data = data.filter((el) => el.tonnazh === "7t");
                           break;
-                          case "10t":
-                            this.tickets = this.ticketsCopy.filter((el) => el.tonnazh === "10t");
+                          case "10t": 
+                            data = data.filter((el) => el.tonnazh === "10t");
                             break;
                     case "all":
-                      this.tickets = [...this.ticketsCopy];
+                      data = [...data];
                       break;
-            
+                            
                   }
+
+                  this.tickets = [...data];
                   setTimeout(() => {
             
                     this.blockDirective.updateItems();
