@@ -39,12 +39,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     
-    // first get info
-  //  this.user = this.userService.getUser();
-
+  // first get info
+  // this.user = this.userService.getUser();
 
   const userId = <string>this.userService.getUser()?.id;
-
   this.route.queryParams.subscribe((par) => {
     // console.log('par', par)
     const parId = par['id'];
