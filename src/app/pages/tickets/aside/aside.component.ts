@@ -32,6 +32,10 @@ export class AsideComponent implements OnInit {
     {label: '7-тонник', value: '7t'},
     {label: '10-тонник', value: '10t'}
   ]
+filter = {
+  type: null,
+  weight: null
+}
 
  
 
@@ -56,11 +60,14 @@ export class AsideComponent implements OnInit {
     this.updateMenuType.emit(ev.value);
   }*/
   changeTechnicType(ev:  {ev: Event, value: ITechnicTypeSelect}): void {
-    this.technicService.updateTechnic(ev.value)
+    this.technicService.updateTechnic(this.filter)
   }
 
   changeWeightType(ev:  {ev: Event, value: IWeightTypeSelect}): void {
-    this.technicService.updateTechnic(ev.value)
+    this.technicService.updateTechnic(this.filter)
+    console.log('xx', this.filter) 
+     
+    
   }
 
   

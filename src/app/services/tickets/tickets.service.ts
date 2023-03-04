@@ -8,7 +8,7 @@ import { ITechnicTypeSelect, ICustomTicketData , IWeightTypeSelect} from '../../
   providedIn: 'root'
 })
 export class TechnicService {
-  private ticketSubject = new Subject<ITechnicTypeSelect>();
+  private ticketSubject = new Subject<any>();
   private weightSubject = new Subject<IWeightTypeSelect>();
 
   private ticketUpdateSubject = new Subject<ITour[]>();
@@ -24,12 +24,12 @@ export class TechnicService {
     getWeightTypeObservable(): Observable<IWeightTypeSelect> {
       return this.weightSubject.asObservable();}
   
-
-  updateTechnic(type:ITechnicTypeSelect): void {
+ 
+  updateTechnic(type:any): void {
     this.ticketSubject.next(type);
   }
 
-  updateWeight(type:IWeightTypeSelect): void {
+  updateWeight(type:any): void {
     this.weightSubject.next(type);
   }
 
