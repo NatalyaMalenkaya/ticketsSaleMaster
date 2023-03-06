@@ -53,9 +53,9 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   this.userService.getUserById(userId).subscribe((data) => {
     this.user = data;
-    this.userForm.controls["eMail"].setValue(this.user.email);
-    this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
-    console.log(this.user?.email, "email user до загрузки формы");
+   // this.userForm.controls["eMail"].setValue(this.user.email);
+    this.userForm.controls["cardNumber"].setValue(this.user.cardNumber);
+   // console.log(this.user?.email, "email user до загрузки формы");
   });
 
 
@@ -99,6 +99,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
    
    
+    this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
+
 
    // const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
    // this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {

@@ -37,9 +37,6 @@ export class FeedbackComponent implements OnInit {
   this.http.post<IFeedback>('http://localhost:3000/feedback/', feedbackObj).subscribe((data) => {
     this.messageService.add({severity:'success', summary:'Спасибо! Отзыв будет опубликован после проверки модератором.'});
     
-  
-
-
 }, (err: HttpErrorResponse)=> { 
   console.log('err', err)
   const ServerError = <ServerError>err.error;

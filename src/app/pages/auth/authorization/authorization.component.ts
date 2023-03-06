@@ -5,7 +5,7 @@ import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
 import {UserService} from '../../../../app/services/user/user.service';
 import {ConfigService} from '../../../services/config/config.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { ServerError } from 'src/app/models/error';
 
 @Component({
@@ -22,6 +22,11 @@ export class AuthorizationComponent implements OnInit {
   selectedValue: boolean;
   cardNumber: string;
   authTextButton: string;
+
+
+  authCardNumber: string;
+
+
   useCardNumber: boolean;
   id: number;
 
@@ -58,6 +63,28 @@ export class AuthorizationComponent implements OnInit {
   const token: string = data.access_token;
   this.userService.setToken(token);
   this.userService.setToStore(token);
+
+
+
+
+  if (this.authCardNumber) {
+    const user = <IUser>this.userService.getUser();
+    user.cardNumber = this.authCardNumber;
+    this.userService.setUser(user);
+    this.http.put<IUser>('http://localhost:3000/users/' + user.id + '', user)
+      .subscribe((data) => {
+        this.messageService.add({severity: 'success', summary: 'Номер VIP-карты успешно добавлен'});
+      }, (err: HttpErrorResponse) => {
+        //console.log('err', err)
+        const serverError = <ServerError>err.error;
+        //console.log('serverError', serverError)
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Ошибка при добавлении VIP-карты. ' + serverError.errorText
+        });
+      });
+  }
+
 
 
   this.router.navigate(['tickets/tickets-list']);

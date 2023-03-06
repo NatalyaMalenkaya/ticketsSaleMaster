@@ -7,7 +7,8 @@ import {MessageService} from "primeng/api";
 import {UserService} from "../../../services/user/user.service";
 import {Router} from "@angular/router";
 import {IUser} from "../../../models/users";
-
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { ServerError } from 'src/app/models/error';
 
 
 
@@ -20,10 +21,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
      private subjectScore: Subject<any>;
      private subjectForUnsubscribe = new Subject();
 
-  newPsw: string;
-  repeatNewPsw: string;
-  currentPsw: string;
-
+     
+     newPsw: string;
+     repeatNewPsw: string;
+     currentPsw: string;
+   
 
   //settingsData: Subscription;
     // settingsDataSubject: Subscription;
@@ -33,7 +35,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
               private settingsService: SettingsService,
               private authService: AuthService,
               private messageService: MessageService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     //this.subjectScore = this.testing.getSubject();
@@ -60,24 +63,33 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
   passwordChange(Ev: Event): void | boolean {
 
-    const  user = <IUser>this.userService.getUser();
-    console.log('user', user)
+    const user = <IUser>this.userService.getUser();
     if (user.psw !== this.currentPsw) {
       this.messageService.add({severity: 'error', summary: 'Неверно введен текущий пароль'});
     } else {
       if (this.newPsw !== this.repeatNewPsw) {
         this.messageService.add({severity: 'error', summary: 'Новые пароли не совпадают'});
+        // console.log("this.newPsw", this.newPsw);
+        // console.log("this.repeatNewPsw", this.repeatNewPsw);
       } else {
-
         user.psw = this.newPsw;
         this.userService.setUser(user);
-
         const userString = JSON.stringify(user);
-        window.localStorage.setItem('user_' + user.login, userString);
-        this.currentPsw = ''
-        this.newPsw = '';
-        this.repeatNewPsw = '';
-        this.messageService.add({severity: 'success', summary: 'Пароль изменен'});
+        window.localStorage.setItem(user.login, userString);
+        // console.log("теперь пароль", user.psw);
+        this.http.put<IUser>('http://localhost:3000/users/' + user.id + '', user)
+          .subscribe((data) => {
+            this.messageService.add({severity: 'success', summary: 'Пароль успешно изменен'});
+          }, (err: HttpErrorResponse) => {
+            //console.log('err', err)
+            const serverError = <ServerError>err.error;
+            //console.log('serverError', serverError)
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Ошибка при установке пароля. ' + serverError.errorText
+            });
+          });
+
 
       }
     }
