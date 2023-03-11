@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   psw: string;
   pswRepeat: string;
   email: string;
-  // cardNumber: string;
+   cardNumber: string;
   saveUserInStore: boolean;
   showCardNumber: boolean;
  
@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit {
     
     const userObj: IUser = {
       psw: this.psw,
-     // cardNumber: this.cardNumber,
+      cardNumber: this.cardNumber,
       login: this.login,
       email: this.email,
      //id: this.id,

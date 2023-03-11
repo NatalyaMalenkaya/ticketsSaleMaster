@@ -55,7 +55,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     this.user = data;
    // this.userForm.controls["eMail"].setValue(this.user.email);
     this.userForm.controls["cardNumber"].setValue(this.user.cardNumber);
-   // console.log(this.user?.email, "email user до загрузки формы");
+    //console.log(this.user.cardNumber, "email user до загрузки формы");
   });
 
 
@@ -66,8 +66,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       firstName: new FormControl('', {validators: Validators.required}),
       cardNumber: new FormControl(this.user?.cardNumber),
       workingTime: new FormControl('',[Validators.required, Validators.minLength(2)]),
-      workingDay: new FormControl(''),
-      workingLocation: new FormControl('')
+      workingDay: new FormControl('', {validators: Validators.required}),
+      workingLocation: new FormControl('', {validators: Validators.required})
 
     })
 
@@ -102,11 +102,11 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
 
 
-   // const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
-   // this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
-   //   const tourName = ev.target.value;
-  //    this.initSearchTour(tourName);
-  //  });
+  /* const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
+    this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
+     const tourName = ev.target.value;
+     this.initSearchTour(tourName);
+   });*/
   }
 
 

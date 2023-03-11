@@ -32,14 +32,10 @@ export class AsideComponent implements OnInit {
     {label: '7-тонник', value: '7t'},
     {label: '10-тонник', value: '10t'}
   ]
-filter = {
+  filter = {
   type: null,
   weight: null
 }
-
- 
-
-
 
   @Output() updateMenuType: EventEmitter<IMenuType> = new EventEmitter()
 

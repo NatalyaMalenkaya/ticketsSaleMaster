@@ -11,7 +11,7 @@ export class StatisticService {
 
   constructor(private statisticUserRest: StatisticRestService) { }
 
-  getUserStatistic(): Observable<ICustomStatisticUser[]> {
+ /*getUserStatistic(): Observable<ICustomStatisticUser[]> {
    return this.statisticUserRest.getUserStatistic().pipe(
      map((data: IStatisticUser[]) => {
        const newDataArr: ICustomStatisticUser[] = [];
@@ -29,5 +29,5 @@ export class StatisticService {
        return newDataArr;
      })
    )
-  }
+  }*/
 }

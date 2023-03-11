@@ -22,9 +22,7 @@ export class AuthorizationComponent implements OnInit {
   selectedValue: boolean;
   cardNumber: string;
   authTextButton: string;
-
-
-  authCardNumber: string;
+  //authCardNumber: string;
 
 
   useCardNumber: boolean;
@@ -39,7 +37,7 @@ export class AuthorizationComponent implements OnInit {
 
   ngOnInit(): void {
     this.authTextButton = "Авторизоваться";
-    this.useCardNumber = ConfigService.config.useUserCard;
+   this.useCardNumber = ConfigService.config.useUserCard;
   }
 
   ngOnDestroy(): void{
@@ -65,7 +63,7 @@ export class AuthorizationComponent implements OnInit {
   this.userService.setToStore(token);
 
 
-
+/*
 
   if (this.authCardNumber) {
     const user = <IUser>this.userService.getUser();
@@ -85,7 +83,7 @@ export class AuthorizationComponent implements OnInit {
       });
   }
 
-
+*/
 
   this.router.navigate(['tickets/tickets-list']);
 

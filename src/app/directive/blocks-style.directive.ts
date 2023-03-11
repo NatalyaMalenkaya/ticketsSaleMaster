@@ -19,11 +19,11 @@ import {
 })
 export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
    @Input() selector: string;
-   @Input() initFirst: boolean = false;
+   @Input() initFirst: boolean;
    @Output() renderComplete = new EventEmitter();
    private items: HTMLElement[];
    private index: number = 0;
-   public activeElementIndex: number;
+  public activeElementIndex: number;
 
   constructor(private el: ElementRef) { }
 
@@ -70,6 +70,8 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
     this.activeElementIndex= this.index
   }
   initStyle(index: number) {
+    this.index = index;
+   // this.activeElementIndex = this.index;
      if(this.items[index]) {
        (this.items[index] as HTMLElement).setAttribute('style','border: 2px solid red')
      }
@@ -79,3 +81,4 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
   }
 
 }
+
