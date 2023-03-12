@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {TicketRestService} from '../rest/ticket-rest.service';
+import {TicketRestService} from '../rest/techmodel-rest.service';
 import {map, Observable, Subject} from 'rxjs';
-import {ITour, INearestTour, ITourLocation} from '../../models/tours';
-import { ITechnicTypeSelect, ICustomTicketData , IWeightTypeSelect} from '../../models/tours';
+import {ITechnic, INearestTour, ITourLocation} from '../../models/technics';
+import { ITechnicTypeSelect, ICustomTicketData , IWeightTypeSelect} from '../../models/technics';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class TechnicService {
   private ticketSubject = new Subject<any>();
   private weightSubject = new Subject<IWeightTypeSelect>();
 
-  private ticketUpdateSubject = new Subject<ITour[]>();
+  private ticketUpdateSubject = new Subject<ITechnic[]>();
   readonly ticketUpdateSubject$ = this.ticketUpdateSubject.asObservable();
   readonly ticketType$ = this.ticketSubject.asObservable();
 
@@ -35,12 +35,12 @@ export class TechnicService {
 
 
 
-  updateTicketList(data: ITour[]) {
+  updateTicketList(data: ITechnic[]) {
     this.ticketUpdateSubject.next(data);
   }
-  getTickets(): Observable<ITour[]> {
+  getTickets(): Observable<ITechnic[]> {
     return this.TechnicServiceRest.getTickets().pipe(map(
-      (value:ITour[]) => {
+      (value:ITechnic[]) => {
         const singleTour = value.filter((el) => el.type === "single");
         return value.concat(singleTour);
       }
@@ -65,7 +65,7 @@ export class TechnicService {
     return newTicketData
   }
   
-  getRandomNearestEvent(name: string): Observable<ITour[]> {
+  getRandomNearestEvent(name: string): Observable<ITechnic[]> {
     return this.TechnicServiceRest.getRandomNearestEvent(name);
   }
  
@@ -75,7 +75,7 @@ export class TechnicService {
 
 
 
-  getTicketById(id: string): Observable<ITour> {
+  getTicketById(id: string): Observable<ITechnic> {
     return this.TechnicServiceRest.getTicketById(id);
   }
 

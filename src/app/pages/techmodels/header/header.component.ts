@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         label: 'Спецтехника',
-        routerLink:['tickets-list']
+        routerLink:['techmodels-list']
       },
       {
         label: 'Отзывы',
@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         label: 'Спецтехника',
-        routerLink:['tickets-list']
+        routerLink:['techmodels-list']
       },
       {
         label: 'Личный кабинет',

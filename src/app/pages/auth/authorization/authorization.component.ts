@@ -85,7 +85,7 @@ export class AuthorizationComponent implements OnInit {
 
 */
 
-  this.router.navigate(['tickets/tickets-list']);
+  this.router.navigate(['techmodels/techmodels-list']);
 
 }, (err)=> {
   const ServerError = <ServerError>err.error;

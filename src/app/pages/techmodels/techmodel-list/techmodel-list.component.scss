@@ -1,4 +1,4 @@
-.ticket-item{
+.techmodel-item{
   height: 250px;
   border: none;
   border-radius: 2px;
@@ -6,7 +6,7 @@
   flex-direction: column;
   transition: 1s;
   justify-content: space-between;
-  & .ticket-title{
+  & .techmodel-title{
     padding: 2px;
     text-align: center;
   }
@@ -16,7 +16,7 @@
     border: 2px solid green
   }
 }
-.ticket-item:hover {
+.techmodel-item:hover {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);

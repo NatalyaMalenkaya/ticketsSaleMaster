@@ -1,4 +1,4 @@
-export interface ITour {
+export interface ITechnic {
   name:string,
   tonnazh:string,
   price:string,
@@ -34,7 +34,7 @@ export interface ITechnicTypeSelect {
 
 
 
-export interface INearestTour extends ITour {
+export interface INearestTour extends ITechnic {
   locationId: string
 }
 export interface ITourLocation {

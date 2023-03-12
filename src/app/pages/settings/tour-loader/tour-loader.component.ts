@@ -1,19 +1,19 @@
 /*import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TechnicService } from 'src/app/services/tickets/tickets.service';
-import { ITour } from 'src/app/models/tours';
+import { TechnicService } from 'src/app/services/techmodels/techmodels.service';
+import { ITechnic } from 'src/app/models/technics';
 
 @Component({
-  selector: 'app-tour-loader',
-  templateUrl: './tour-loader.component.html',
-  styleUrls: ['./tour-loader.component.scss']
+  selector: 'app-technic-loader',
+  templateUrl: './technic-loader.component.html',
+  styleUrls: ['./technic-loader.component.scss']
 })
 export class TourLoaderComponent implements OnInit {
-  tourForm: FormGroup;
+  technicForm: FormGroup;
   constructor(private technicService: TechnicService) { }
 
   ngOnInit(): void {
-    this.tourForm = new FormGroup({
+    this.technicForm = new FormGroup({
       name:  new FormControl('', {validators: Validators.required}),
       tonnazh: new FormControl('', [Validators.required, Validators.minLength(2)]),
       type: new FormControl(),
@@ -23,11 +23,11 @@ export class TourLoaderComponent implements OnInit {
   }
 
   createTour(): void {
-    const tourDataRow = this.tourForm.getRawValue();
+    const technicDataRow = this.technicForm.getRawValue();
     let formParams = new FormData();
-    if (typeof tourDataRow === "object") {
-      for ( let prop in tourDataRow){
-        formParams.append( prop , tourDataRow[prop]);
+    if (typeof technicDataRow === "object") {
+      for ( let prop in technicDataRow){
+        formParams.append( prop , technicDataRow[prop]);
       }
     }
     this.technicService.createTour(formParams).subscribe((data) => {});
@@ -37,7 +37,7 @@ export class TourLoaderComponent implements OnInit {
   selectFile(ev: any): void {
     if (ev.target.files.length > 0) {
       const file= ev.target.files[0];
-      this.tourForm.patchValue({
+      this.technicForm.patchValue({
         img: file
       });
     }

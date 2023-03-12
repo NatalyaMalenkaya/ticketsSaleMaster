@@ -12,7 +12,7 @@ export interface IStatisticUser {
   workingTime: string | null,
   workingDay: string | null,
   workingLocation:string | null,
-  tourId: string | null,
+  technicId: string | null,
   userId: string | null,
   
 }
@@ -23,7 +23,7 @@ export interface IStatisticUserAddress {
   workingTime: string | null,
   workingDay: string | null,
   workingLocation:string | null,
-  tourId: string | null,
+  technicId: string | null,
   userId: string | null,
   
 }
@@ -34,6 +34,6 @@ export interface ICustomStatisticUser {
   workingTime: string | null,
   workingDay: string | null,
   workingLocation:string | null,
-  tourId: string | null,
+  technicId: string | null,
   userId: string | null,
 }

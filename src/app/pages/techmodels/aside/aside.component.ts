@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {IMenuType} from '../../../models/menuType';
-import {ITechnicTypeSelect, IWeightTypeSelect} from '../../../models/tours';
-import {TechnicService} from '../../../services/tickets/tickets.service';
+import {ITechnicTypeSelect, IWeightTypeSelect} from '../../../models/technics';
+import {TechnicService} from '../../../services/techmodels/techmodels.service';
 import {MessageService} from "primeng/api";
 import {SettingsService} from '../../../services/settings/settings.service';
 import { subscribeOn } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import { ITour } from '../../../models/tours';
+import { ITechnic } from '../../../models/technics';
 
 
 @Component({
@@ -89,7 +89,7 @@ export class AsideComponent implements OnInit {
   }
 
   initTechnics():void {
-    this.http.post<ITour[]>("http://localhost:3000/tours/", {}).subscribe((data)=>{
+    this.http.post<ITechnic[]>("http://localhost:3000/technics/", {}).subscribe((data)=>{
      this.technicService.updateTicketList(data);
     });
   }
@@ -97,7 +97,7 @@ export class AsideComponent implements OnInit {
 
 
   deleteTechnics():void {
-    this.http.delete("http://localhost:3000/tours/").subscribe((data)=>{
+    this.http.delete("http://localhost:3000/technics/").subscribe((data)=>{
       this.technicService.updateTicketList([]);
     });
   }

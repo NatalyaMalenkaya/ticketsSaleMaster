@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TicketsComponent} from './tickets.component'
-import {TicketListComponent} from './ticket-list/ticket-list.component'
+import {TicketsComponent} from './techmodels.component'
+import {TechmodelListComponent} from './techmodel-list/techmodel-list.component'
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { ForAdminComponent } from '../for-admin/for-admin.component';
 
@@ -12,12 +12,12 @@ const routes: Routes = [
 
     children: [
       {
-        path: 'tickets-list',
-        component: TicketListComponent
+        path: 'techmodels-list',
+        component: TechmodelListComponent
       },
       {
-        path: 'ticket',
-        loadChildren: () => import('../ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
+        path: 'techmodel',
+        loadChildren: () => import('../techmodel-info/techmodel-info.module').then(m => m.TechmodelInfoModule)
       },
       {
         path: 'settings',

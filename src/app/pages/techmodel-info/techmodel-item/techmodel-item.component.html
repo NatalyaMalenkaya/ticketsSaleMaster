@@ -1,14 +1,14 @@
-<div class="ticket-info-wrap">
+<div class="techmodel-info-wrap">
 
 <div class="wrapflex">
 
 
 <div class="block">
 <h4>Информация о спецтехнике</h4>
-  <!-- <a routerLink="/tickets/tickets-list">Назад</a>-->
-<div class="mt-3">{{ticket?.name}}</div>
-<div class="descr_style">{{ticket?.description}}</div>
-<img class="img_style1" alt="ticket-img" src="http://localhost:3000/public/{{ticket?.img}}">
+  <!-- <a routerLink="/techmodels/techmodels-list">Назад</a>-->
+<div class="mt-3">{{techmodel?.name}}</div>
+<div class="descr_style">{{techmodel?.description}}</div>
+<img class="img_style1" alt="techmodel-img" src="http://localhost:3000/public/{{techmodel?.img}}">
 </div>
     
       <div class="block">
@@ -93,10 +93,10 @@
           <input #ticketSearch [(ngModel)]="ticketSearchValue" type="text">
         </div> -->
         <p-carousel [value]="nearestTours" class="carousel_style">
-          <ng-template let-tour pTemplate="item">
-           <div class="technic_title">{{tour.name}}</div>
-            <div class="ticket-img-nearest" (click)="goToTicketInfoPage(tour)">
-              <img class="img_style" src="http://localhost:3000/public/{{tour.img}}"/>
+          <ng-template let-technic pTemplate="item">
+           <div class="technic_title">{{technic.name}}</div>
+            <div class="techmodel-img-nearest" (click)="goToTicketInfoPage(technic)">
+              <img class="img_style" src="http://localhost:3000/public/{{technic.img}}"/>
             </div>
           </ng-template>
         </p-carousel>

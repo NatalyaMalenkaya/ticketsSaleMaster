@@ -5635,13 +5635,13 @@ readers do not read off random characters that represent icons */
 .fa-thumb-tack::before {
   content: "\f08d"; }
 
-.fa-ticket::before {
+.fa-techmodel::before {
   content: "\f145"; }
 
-.fa-ticket-simple::before {
+.fa-techmodel-simple::before {
   content: "\f3ff"; }
 
-.fa-ticket-alt::before {
+.fa-techmodel-alt::before {
   content: "\f3ff"; }
 
 .fa-timeline::before {

@@ -1,37 +1,37 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import {ITour, INearestTour, ITourLocation} from '../../../models/tours';
+import {ITechnic, INearestTour, ITourLocation} from '../../../models/technics';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TiсketsStorageService} from '../../../../app/services/tiсkets-storage/tiсkets-storage.service';
+import { TechmodelsStorageService } from 'src/app/services/techmodels-storage/techmodels-storage.service';
 import {IUser} from '../../../models/users';
 import {UserService} from '../../../services/user/user.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {TechnicService} from '../../../services/tickets/tickets.service';
+import {TechnicService} from '../../../services/techmodels/techmodels.service';
 import {Subscription, fromEvent, forkJoin} from 'rxjs';
 import { IOrder } from 'src/app/models/order';
 import {MessageService} from "primeng/api";
 
 
 @Component({
-  selector: 'app-ticket-item',
-  templateUrl: './ticket-item.component.html',
-  styleUrls: ['./ticket-item.component.scss']
+  selector: 'app-techmodel-item',
+  templateUrl: './techmodel-item.component.html',
+  styleUrls: ['./techmodel-item.component.scss']
 })
-export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
-  ticket: ITour | undefined;
+export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy {
+  techmodel: ITechnic | undefined;
   user: IUser | any;
   userForm: FormGroup;
   ticketSearchValue: string;
   
 
   nearestTours: INearestTour[];
-  toursLocation: ITourLocation[];
+  technicsLocation: ITourLocation[];
   @ViewChild('ticketSearch') ticketSearch: ElementRef;
   searchTicketSub: Subscription;
   ticketRestSub: Subscription;
   searchTypes = [1,2,3]
 
   constructor(private route: ActivatedRoute,
-              private ticketStorage: TiсketsStorageService,
+              private techmodelStorage: TechmodelsStorageService,
               private userService: UserService,
               private technicService: TechnicService,
               private router: Router,
@@ -47,7 +47,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     // console.log('par', par)
     const parId = par['id'];
     this.technicService.getTicketById(parId).subscribe((data) => {
-      this.ticket = data;
+      this.techmodel = data;
     })
   });
 
@@ -71,10 +71,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     })
 
-    //get nearest tour
+    //get nearest technic
     forkJoin([this.technicService.getNearestTours(), this.technicService.getTourLocations()]).subscribe((data) => {
       this.nearestTours = data[0];
-      this.toursLocation = data[1];
+      this.technicsLocation = data[1];
       this.nearestTours = this.technicService.transformData(data[0], data[1]);
 
     })
@@ -85,10 +85,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
    const paramValueId = routeIdParam || queryIdParam;
    if (paramValueId) {
      this.technicService.getTicketById(paramValueId).subscribe((data) => {
-       this.ticket = data;
+       this.techmodel = data;
      })
-     // const ticketStorage= this.ticketStorage.getStorage();
-     // this.ticket = ticketStorage.find((el) => el.id === paramValueId);
+     // const techmodelStorage= this.techmodelStorage.getStorage();
+     // this.techmodel = techmodelStorage.find((el) => el.id === paramValueId);
    }
 
 
@@ -104,8 +104,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /* const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
     this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
-     const tourName = ev.target.value;
-     this.initSearchTour(tourName);
+     const technicName = ev.target.value;
+     this.initSearchTour(technicName);
    });*/
   }
 
@@ -134,7 +134,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   
     initTour(): void{
       const userData=this.userForm.getRawValue();
-      const postData={...this.ticket, ...userData};
+      const postData={...this.techmodel, ...userData};
       
       const userId= this.userService.getUser()?.id || null ;
       const postObj: IOrder = {
@@ -147,7 +147,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
         workingDay: postData.workingDay,
         workingLocation: postData.workingLocation,
         
-        tourId: postData.id,
+        technicId: postData.id,
         userId: userId,
   
         
@@ -174,19 +174,19 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
           this.userForm.reset();
         }
       
-       // goToTicketInfoPage(tour: ITour) {
-      //    this.router.navigate(['/tickets/ticket/${item.id}'], {
+       // goToTicketInfoPage(technic: ITechnic) {
+      //    this.router.navigate(['/techmodels/techmodel/${item.id}'], {
 
-            // queryParams: {id: tour.id},
+            // queryParams: {id: technic.id},
             // relativeTo: this.route
 
         //    }
        //   );
       //  }
 
-      goToTicketInfoPage(tour: ITour) {
-        this.router.navigate(['/tickets/ticket'], {
-            queryParams: {id: tour._id},
+      goToTicketInfoPage(technic: ITechnic) {
+        this.router.navigate(['/techmodels/techmodel'], {
+            queryParams: {id: technic._id},
             relativeTo: this.route
           }
         );

@@ -1,6 +1,6 @@
 /*import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TourLoaderComponent } from './tour-loader.component';
+import { TourLoaderComponent } from './technic-loader.component';
 
 describe('TourLoaderComponent', () => {
   let component: TourLoaderComponent;

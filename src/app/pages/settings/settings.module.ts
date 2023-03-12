@@ -9,7 +9,7 @@ import {ButtonModule} from "primeng/button";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatisticComponent} from './statistic/statistic/statistic.component';
 import {TableModule} from "primeng/table";
-//import { TourLoaderComponent } from './tour-loader/tour-loader.component';
+//import { TourLoaderComponent } from './technic-loader/technic-loader.component';
 
 
 

@@ -1,29 +1,29 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {TechnicService} from "../../../services/tickets/tickets.service";
-import {ITour} from '../../../models/tours';
-import { TiсketsStorageService } from 'src/app/services/tiсkets-storage/tiсkets-storage.service';
+import {TechnicService} from "../../../services/techmodels/techmodels.service";
+import {ITechnic} from '../../../models/technics';
+import { TechmodelsStorageService } from 'src/app/services/techmodels-storage/techmodels-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BlocksStyleDirective} from '../../../directive/blocks-style.directive';
 import {Subscription, fromEvent, debounceTime} from 'rxjs';
-import {ITechnicTypeSelect} from '../../../models/tours'
+import {ITechnicTypeSelect} from '../../../models/technics'
 
 @Component({
-  selector: 'app-ticket-list',
-  templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.scss']
+  selector: 'app-techmodel-list',
+  templateUrl: './techmodel-list.component.html',
+  styleUrls: ['./techmodel-list.component.scss']
 })
-export class TicketListComponent implements OnInit {
-  tickets: ITour[];
-  ticketsCopy: ITour[];
+export class TechmodelListComponent implements OnInit {
+  techmodels: ITechnic[];
+  techmodelsCopy: ITechnic[];
   loadCountBlock = false;
   defaultDate: string;
   
 
-  @ViewChild('tourWrap', {read: BlocksStyleDirective}) blockDirective: BlocksStyleDirective
+  @ViewChild('technicWrap', {read: BlocksStyleDirective}) blockDirective: BlocksStyleDirective
 
-  @ViewChild('tourWrap')  tourWrap: ElementRef
+  @ViewChild('technicWrap')  technicWrap: ElementRef
 
-   tourUnsubscriber: Subscription
+   technicUnsubscriber: Subscription
 
   @ViewChild('ticketSearch')ticketSearch: ElementRef;
   searchTicketSub: Subscription;
@@ -32,27 +32,27 @@ export class TicketListComponent implements OnInit {
   constructor(private technicService: TechnicService,
               private router: Router,
               private route: ActivatedRoute,
-              private ticketStorage: TiсketsStorageService) { }
+              private techmodelStorage: TechmodelsStorageService) { }
 
               ngOnInit(): void {
                 this.technicService.ticketUpdateSubject$.subscribe((data)=>{
-                  this.tickets=data;
+                  this.techmodels=data;
                 })
             
             
                 this.technicService.getTickets().subscribe(
                   (data) => {
-                    this.tickets = data;
-                    this.ticketsCopy = [...this.tickets];
-                    this.ticketStorage.setStorage(data);
+                    this.techmodels = data;
+                    this.techmodelsCopy = [...this.techmodels];
+                    this.techmodelStorage.setStorage(data);
                   }
                 )
             //  1 вариант подписки
             
-                this.tourUnsubscriber = this.technicService.ticketType$.subscribe((dataValue: {type: any, weight: any}) => {
+                this.technicUnsubscriber = this.technicService.ticketType$.subscribe((dataValue: {type: any, weight: any}) => {
                   console.log('data', dataValue)
-                  let data = this.ticketsCopy;
-                  console.log('this.ticketsCopy', this.ticketsCopy);
+                  let data = this.techmodelsCopy;
+                  console.log('this.techmodelsCopy', this.techmodelsCopy);
                   
                   let ticketType: string;
                   switch (dataValue.type.value) {
@@ -73,7 +73,7 @@ export class TicketListComponent implements OnInit {
                     const dateWithoutTime = new Date(data.date).toISOString().split('T');
                     const dateValue = dateWithoutTime[0]
                     console.log('dateValue', dateValue)
-                    this.tickets = this.ticketsCopy.filter((el) => el.date === dateValue);
+                    this.techmodels = this.techmodelsCopy.filter((el) => el.date === dateValue);
                   }*/
                   let weightType: string;
                   switch (dataValue.weight.value) {
@@ -95,7 +95,7 @@ export class TicketListComponent implements OnInit {
                             
                   }
 
-                  this.tickets = [...data];
+                  this.techmodels = [...data];
                   setTimeout(() => {
             
                     this.blockDirective.updateItems();
@@ -108,20 +108,20 @@ export class TicketListComponent implements OnInit {
 
 
             //  2 вариант подписки
-            //     this.tourUnsubscriber = this.technicService.getTicketTypeObservable().subscribe((data:ITourTypeSelect) => {  console.log('data', data)  });
+            //     this.technicUnsubscriber = this.technicService.getTicketTypeObservable().subscribe((data:ITourTypeSelect) => {  console.log('data', data)  });
             
               }
             
-              goToTicketInfoPage(item: ITour) {
-               // this.router.navigate( ['/tickets/ticket/${item.id}'])
-                // если пусть в роутинг модуле записан так: path: 'tickets/:id',
+              goToTicketInfoPage(item: ITechnic) {
+               // this.router.navigate( ['/techmodels/techmodel/${item.id}'])
+                // если пусть в роутинг модуле записан так: path: 'techmodels/:id',
             
-               this.router.navigate(['/tickets/ticket'], {queryParams: {id: item._id}})
-                // если пусть в роутинг модуле записан так: path: 'ticket',
+               this.router.navigate(['/techmodels/techmodel'], {queryParams: {id: item._id}})
+                // если пусть в роутинг модуле записан так: path: 'techmodel',
               }
             
                   directiveRenderComplete(ev: boolean) {
-                  const el: HTMLElement = this.tourWrap.nativeElement;
+                  const el: HTMLElement = this.technicWrap.nativeElement;
                   //el.setAttribute('style', 'background-color:#ebf8e1');
                   this.blockDirective.initStyle(3);
                   this.loadCountBlock = true;
@@ -134,9 +134,9 @@ export class TicketListComponent implements OnInit {
                 this.searchTicketSub = fromEventObserver.pipe(
                   debounceTime(200)).subscribe((ev:any)=>{
                     if (this.ticketSearchValue) {
-                      this.tickets = this.ticketsCopy.filter((el) => el.name.toLowerCase().includes(this.ticketSearchValue.toLowerCase()));
+                      this.techmodels = this.techmodelsCopy.filter((el) => el.name.toLowerCase().includes(this.ticketSearchValue.toLowerCase()));
                     } else {
-                      this.tickets = [...this.ticketsCopy];
+                      this.techmodels = [...this.techmodelsCopy];
                     }
                   }
                 );
@@ -144,7 +144,7 @@ export class TicketListComponent implements OnInit {
             
             ngOnDestroy()
             {
-              this.tourUnsubscriber.unsubscribe();
+              this.technicUnsubscriber.unsubscribe();
               this.searchTicketSub.unsubscribe();
             }
             
