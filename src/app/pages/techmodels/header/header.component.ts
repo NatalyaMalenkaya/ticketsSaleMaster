@@ -23,8 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService) {}
 
   ngOnInit(): void {
-    this.items = [
-      
+    this.items = [    
       {
         label: 'Выйти',
         routerLink:['/auth']
@@ -40,14 +39,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       {
         label: 'Личный кабинет',
         routerLink:['settings'],
-        //visible: this.settingsActive
       },   
       {
         label: 'Настройки',
         routerLink:['for-admin'],
         //visible: false
       }, 
-
     ];
 
     this.timerInterval = window.setInterval(() => {

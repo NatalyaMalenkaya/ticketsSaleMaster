@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MessageService} from 'primeng/api';
 import { TicketsRoutingModule } from './techmodels-routing.module';
-import { TicketsComponent } from './techmodels.component';
+import { TechmodelsComponent } from './techmodels.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TechmodelListComponent } from './techmodel-list/techmodel-list.component';
@@ -18,7 +18,7 @@ import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
-    TicketsComponent,
+    TechmodelsComponent,
     HeaderComponent,
     FooterComponent,
     TechmodelListComponent,

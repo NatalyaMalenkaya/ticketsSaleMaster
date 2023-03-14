@@ -1,26 +1,24 @@
 .registration-input-wrap span{
-     width: 176px;
-    // border-radius: 0.25rem;
-    // height: 15px;
-     display: inline-block;
-     
-
+    width: 176px;
+    height: 15px;
+    display: inline-flex;
 }
-
-
-
 .style_reg {
-
  margin-top: 5px;
- margin-bottom: 5px;
+ margin-bottom: 10px;
+ color: #231b1c;
 }
 .style_inp {
      border: 2px solid #bdbdbd;
      border-radius: 0.25rem;
      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+     height: 5px;
+     margin: 2px;
 }
 .style_inp_1 {
      border: 2px solid red;
      border-radius: 0.25rem;
      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+     height: 5px;
+     margin: 2px;
 }

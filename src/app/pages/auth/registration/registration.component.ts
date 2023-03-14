@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
-import { UserService } from 'src/app/services/user/user.service';
 import {IUser} from "../../../models/users";
 import {AuthService} from "../../../services/auth/auth.service";
 import {ConfigService} from '../../../services/config/config.service';
@@ -33,40 +32,12 @@ export class RegistrationComponent implements OnInit {
       this.messageService.add({severity:'error', summary:'Пароли не совпадают'});
       return false;
     }
-    
-    const userObj: IUser = {
+      const userObj: IUser = {
       psw: this.psw,
       cardNumber: this.cardNumber,
       login: this.login,
       email: this.email,
-     //id: this.id,
     }
-
-   
-    //if (!this.authService.isUserExists(userObj)) {
-    //  this.authService.setUser(userObj);
-    //  if(this.saveUserInStore){
-    //    const objUserJsonStr = JSON.stringify(userObj);
-   //     window.localStorage.setItem('user_'+userObj.login, objUserJsonStr);
-    //  }
-    //  this.messageService.add({severity: 'success', summary: 'Регистрация прошла успешно'});
-    //} else {
-    //  this.messageService.add({severity: 'warn', summary: 'Пользователь уже зарегистрирован'})
-    //}
-
-   // this.http.post<IUser>('http://localhost:4000/users', userObj).subscribe((data:IUser) => {
-   //   if (this.saveUserInStore) {
-     //   const objUserJsonStr = JSON.stringify(userObj);
-       // window.localStorage.setItem('user_'+userObj.login, objUserJsonStr);
-       // }
-       // this.messageService.add({severity: 'success', summary: 'Регистрация прошла успешно'});
-
-    // }, () => {
-  //  this.messageService.add({severity: 'warn', summary: 'Пользователь уже зарегистрирован'});
-   // });
- // }
-
-
  this.http.post<IUser>('http://localhost:3000/users/', userObj).subscribe((data) => {
   if (this.saveUserInStore) {
     const objUserJsonStr = JSON.stringify(userObj);
@@ -81,5 +52,4 @@ export class RegistrationComponent implements OnInit {
 });
 
   }
- 
 }

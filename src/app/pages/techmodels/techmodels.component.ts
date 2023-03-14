@@ -11,7 +11,7 @@ import { trackByHourSegment } from 'angular-calendar/modules/common/util';
   templateUrl: './techmodels.component.html',
   styleUrls: ['./techmodels.component.scss']
 })
-export class TicketsComponent implements OnInit {
+export class TechmodelsComponent implements OnInit {
   techmodels: ITechnic[];
   selectedType: IMenuType;
   isOn: boolean = true;
