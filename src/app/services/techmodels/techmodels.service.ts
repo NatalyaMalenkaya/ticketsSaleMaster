@@ -35,7 +35,7 @@ export class TechnicService {
 
 
 
-  updateTicketList(data: ITechnic[]) {
+  updateTechmodelList(data: ITechnic[]) {
     this.ticketUpdateSubject.next(data);
   }
   getTickets(): Observable<ITechnic[]> {

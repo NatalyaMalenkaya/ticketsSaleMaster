@@ -90,7 +90,7 @@ export class AsideComponent implements OnInit {
 
   initTechnics():void {
     this.http.post<ITechnic[]>("http://localhost:3000/technics/", {}).subscribe((data)=>{
-     this.technicService.updateTicketList(data);
+     this.technicService.updateTechmodelList(data);
     });
   }
 
@@ -98,7 +98,7 @@ export class AsideComponent implements OnInit {
 
   deleteTechnics():void {
     this.http.delete("http://localhost:3000/technics/").subscribe((data)=>{
-      this.technicService.updateTicketList([]);
+      this.technicService.updateTechmodelList([]);
     });
   }
 }

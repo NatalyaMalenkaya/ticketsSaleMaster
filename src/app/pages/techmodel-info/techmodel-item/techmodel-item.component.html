@@ -95,7 +95,7 @@
         <p-carousel [value]="nearestTours" class="carousel_style">
           <ng-template let-technic pTemplate="item">
            <div class="technic_title">{{technic.name}}</div>
-            <div class="techmodel-img-nearest" (click)="goToTicketInfoPage(technic)">
+            <div class="techmodel-img-nearest" (click)="goToTechmodelInfoPage(technic)">
               <img class="img_style" src="http://localhost:3000/public/{{technic.img}}"/>
             </div>
           </ng-template>

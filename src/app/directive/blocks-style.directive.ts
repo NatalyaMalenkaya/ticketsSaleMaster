@@ -18,11 +18,11 @@ import {
   exportAs: 'blocksStyle'
 })
 export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
-   @Input() selector: string;
-   @Input() initFirst: boolean;
-   @Output() renderComplete = new EventEmitter();
-   private items: HTMLElement[];
-   private index: number = 0;
+  @Input() selector: string;
+  @Input() initFirst: boolean = false;
+  @Output() renderComplete = new EventEmitter();
+  private items: HTMLElement[];
+  private index: number = 0;
   public activeElementIndex: number;
 
   constructor(private el: ElementRef) { }
@@ -31,18 +31,18 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
 
   }
   ngAfterViewInit() {
-     this.activeElementIndex = 0
-    if(this.selector){
-        this.items = this.el.nativeElement.querySelectorAll(this.selector);
+    this.activeElementIndex = 0
+   if(this.selector){
+       this.items = this.el.nativeElement.querySelectorAll(this.selector);
 
-      if(this.initFirst){
-        if(this.items[0]){
-              (this.items[0] as HTMLElement).setAttribute('style', 'border: 2px solid red');
-        }
-      }
-    } else {
-      console.error('Не передан селектор')
-    }
+     if(this.initFirst){
+       if(this.items[0]){
+             (this.items[0] as HTMLElement).setAttribute('style', 'border: 2px solid green');
+       }
+     }
+   } else {
+     console.error('Не передан селектор')
+   }
     setTimeout(() =>{
       this.renderComplete.emit(true);
     })
@@ -67,13 +67,11 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
       this.initStyle(this.index)
 
     }
-    this.activeElementIndex= this.index
+    this.activeElementIndex = this.index
   }
   initStyle(index: number) {
-    this.index = index;
-   // this.activeElementIndex = this.index;
      if(this.items[index]) {
-       (this.items[index] as HTMLElement).setAttribute('style','border: 2px solid red')
+       (this.items[index] as HTMLElement).setAttribute('style','border: 2px solid green')
      }
   }
   updateItems(): void {

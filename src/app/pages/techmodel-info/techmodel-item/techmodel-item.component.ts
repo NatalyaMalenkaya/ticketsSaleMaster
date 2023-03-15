@@ -97,16 +97,7 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(): void {
-   
-   
     this.userForm.controls["cardNumber"].setValue(this.user?.cardNumber);
-
-
-  /* const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup');
-    this.searchTicketSub = fromEventObserver.subscribe((ev: any) => {
-     const technicName = ev.target.value;
-     this.initSearchTour(technicName);
-   });*/
   }
 
 
@@ -174,7 +165,7 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
           this.userForm.reset();
         }
       
-       // goToTicketInfoPage(technic: ITechnic) {
+       // goToTechmodelInfoPage(technic: ITechnic) {
       //    this.router.navigate(['/techmodels/techmodel/${item.id}'], {
 
             // queryParams: {id: technic.id},
@@ -184,7 +175,7 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
        //   );
       //  }
 
-      goToTicketInfoPage(technic: ITechnic) {
+      goToTechmodelInfoPage(technic: ITechnic) {
         this.router.navigate(['/techmodels/techmodel'], {
             queryParams: {id: technic._id},
             relativeTo: this.route

@@ -112,12 +112,8 @@ export class TechmodelListComponent implements OnInit {
             
               }
             
-              goToTicketInfoPage(item: ITechnic) {
-               // this.router.navigate( ['/techmodels/techmodel/${item.id}'])
-                // если пусть в роутинг модуле записан так: path: 'techmodels/:id',
-            
+              goToTechmodelInfoPage(item: ITechnic) {
                this.router.navigate(['/techmodels/techmodel'], {queryParams: {id: item._id}})
-                // если пусть в роутинг модуле записан так: path: 'techmodel',
               }
             
                   directiveRenderComplete(ev: boolean) {
@@ -128,9 +124,7 @@ export class TechmodelListComponent implements OnInit {
                 }
             
               ngAfterViewInit() {
-            
                 const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, "keyup");
-            
                 this.searchTicketSub = fromEventObserver.pipe(
                   debounceTime(200)).subscribe((ev:any)=>{
                     if (this.ticketSearchValue) {
