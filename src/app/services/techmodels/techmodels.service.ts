@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {TicketRestService} from '../rest/techmodel-rest.service';
 import {map, Observable, Subject} from 'rxjs';
-import {ITechnic, INearestTour, ITourLocation} from '../../models/technics';
+import {ITechnic, ISimiliarTechnic, ITechnicTitle} from '../../models/technics';
 import { ITechnicTypeSelect, ICustomTicketData , IWeightTypeSelect} from '../../models/technics';
 
 @Injectable({
@@ -49,17 +49,17 @@ export class TechnicService {
   getError(): Observable<any> {
     return  this.TechnicServiceRest.getRestError();
   }
-  getNearestTours(): Observable<INearestTour[]> {
-    return this.TechnicServiceRest.getNearestTours();
+  getSimiliarTechnics(): Observable<ISimiliarTechnic[]> {
+    return this.TechnicServiceRest.getSimiliarTechnics();
   }
-  getTourLocations(): Observable<ITourLocation[]> {
-    return this.TechnicServiceRest.getLocationList();
+  getTourLocations(): Observable<ITechnicTitle[]> {
+    return this.TechnicServiceRest.getTitleList();
   }
-  transformData(data: INearestTour[], regions: ITourLocation[]): ICustomTicketData[] {
+  transformData(data: ISimiliarTechnic[], regions: ITechnicTitle[]): ICustomTicketData[] {
     const newTicketData:  ICustomTicketData[] = [];
     data.forEach((el) => {
       const newEl = <ICustomTicketData>{...el};
-      newEl.region = <ICustomTicketData>regions.find((region) => {return el.locationId === region.id});
+      newEl.title = <ICustomTicketData>regions.find((title) => {return el.locationId === title.id});
       newTicketData.push(newEl);
     });
     return newTicketData

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ITechnic, INearestTour, ITourLocation} from '../../models/technics';
+import {ITechnic, ISimiliarTechnic, ITechnicTitle} from '../../models/technics';
 import {Observable} from 'rxjs';
 import { IOrder } from 'src/app/models/order';
 
@@ -21,12 +21,12 @@ export class TicketRestService {
     return this.http.get<any>('https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/technics/notFound');
   }
 
-  getNearestTours(): Observable<ITechnic[]> {
+  getSimiliarTechnics(): Observable<ITechnic[]> {
     return this.http.get<ITechnic[]>('http://localhost:3000/technics/');
   }
 
-  getLocationList(): Observable<ITourLocation[]> {
-    return this.http.get<ITourLocation[]>('https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/location/')
+  getTitleList(): Observable<ITechnicTitle[]> {
+    return this.http.get<ITechnicTitle[]>('http://localhost:3000/technics/'+ name);
   }
 
   getRandomNearestEvent(name: string): Observable<ITechnic[]> {

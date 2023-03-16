@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import {ITechnic, INearestTour, ITourLocation} from '../../../models/technics';
+import {ITechnic, ISimiliarTechnic, ITechnicTitle} from '../../../models/technics';
 import {ActivatedRoute, Router} from '@angular/router';
 import { TechmodelsStorageService } from 'src/app/services/techmodels-storage/techmodels-storage.service';
 import {IUser} from '../../../models/users';
@@ -23,8 +23,8 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
   ticketSearchValue: string;
   
 
-  nearestTours: INearestTour[];
-  technicsLocation: ITourLocation[];
+  similiarTechnics: ISimiliarTechnic[];
+  technicsTitle: ITechnicTitle[];
   @ViewChild('ticketSearch') ticketSearch: ElementRef;
   searchTicketSub: Subscription;
   ticketRestSub: Subscription;
@@ -72,12 +72,12 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
     })
 
     //get nearest technic
-    forkJoin([this.technicService.getNearestTours(), this.technicService.getTourLocations()]).subscribe((data) => {
-      this.nearestTours = data[0];
-      this.technicsLocation = data[1];
-      this.nearestTours = this.technicService.transformData(data[0], data[1]);
-
+    forkJoin([this.technicService.getSimiliarTechnics(), this.technicService.getTourLocations()]).subscribe((data) => {
+      this.similiarTechnics = data[0];
+      this.technicsTitle = data[1];
+      this.similiarTechnics = this.technicService.transformData(data[0], data[1]);
     })
+
 
    // params
    const routeIdParam = this.route.snapshot.paramMap.get('id'); //for route
@@ -110,7 +110,7 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
   
   initSearchTour(name: string): void {
     this.ticketRestSub = this.technicService.getRandomNearestEvent(name).subscribe((data) => {
-      this.nearestTours = data;
+      this.similiarTechnics = data;
     });
   }
 

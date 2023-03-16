@@ -34,14 +34,13 @@ export interface ITechnicTypeSelect {
 
 
 
-export interface INearestTour extends ITechnic {
+export interface ISimiliarTechnic extends ITechnic {
   locationId: string
 }
-export interface ITourLocation {
+export interface ITechnicTitle {
   name: string;
   id: string
 }
-export interface ICustomTicketData extends INearestTour {
-  region: ITourLocation;
+export interface ICustomTicketData extends ISimiliarTechnic {
+  title: ITechnicTitle;
 }
-

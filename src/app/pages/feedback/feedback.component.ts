@@ -22,12 +22,16 @@ export class FeedbackComponent implements OnInit {
     
   }
   sendFeedback(ev: Event): void | boolean{
-    if (this.feedback == null) {
+   /* if (this.feedback == null) {
       this.messageService.add({severity:'error', summary:'Введите свой отзыв.'});
     } else
       { this.messageService.add({severity:'success', summary:'Спасибо! Отзыв будет опубликован после проверки модератором.'});
+    }*/
+      if (this.feedback != null) {
+      this.messageService.add({severity:'success', summary:'Спасибо! Отзыв будет опубликован после проверки модератором.'});
+    } else
+      { this.messageService.add({severity:'error', summary:'Введите свой отзыв.'});
     }
-    
       const feedbackObj: IFeedback = {
       name: this.name,
       feedback: this.feedback,
@@ -39,10 +43,12 @@ export class FeedbackComponent implements OnInit {
     this.messageService.add({severity:'success', summary:'Спасибо! Отзыв будет опубликован после проверки модератором.'});
    }
 }, (err: HttpErrorResponse)=> { 
-  console.log('err', err)
+ console.log('err', err)
   const ServerError = <ServerError>err.error;
   this.messageService.add({severity:'error', summary:'Введите свой отзыв.'});
-});
+
+}
+);
 
   }
  

@@ -92,7 +92,7 @@
        <!-- <div>
           <input #ticketSearch [(ngModel)]="ticketSearchValue" type="text">
         </div> -->
-        <p-carousel [value]="nearestTours" class="carousel_style">
+        <p-carousel [value]="similiarTechnics" class="carousel_style">
           <ng-template let-technic pTemplate="item">
            <div class="technic_title">{{technic.name}}</div>
             <div class="techmodel-img-nearest" (click)="goToTechmodelInfoPage(technic)">
