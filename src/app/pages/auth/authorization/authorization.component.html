@@ -2,6 +2,7 @@
   <div>
     <span class="mx-3 style_reg">{{loginText}}</span>
   <input type="text"
+  class="mt-3 mx-3"
          pInputText
          
          [ngClass]="{'input-error': !login}"
@@ -10,19 +11,19 @@
   <div>
     <span class="mx-3 style_reg">{{pswText}}</span>
   <input type="password"
-         class="mt-3"
+         class="mt-3 mx-3"
          pInputText
          [ngClass]="{'input-error': !psw}"
          [(ngModel)]="psw"/>
    </div>
   <div class="mt-3" *ngIf="useCardNumber">
-    <p-checkbox name="groupname" [binary]="true"
+    <p-checkbox class="mx-3" name="groupname" [binary]="true"
                 label="Есть номер карты"
                 [(ngModel)]="selectedValue"></p-checkbox>
     <div *ngIf="selectedValue">
       <span class="mx-3">Номер карты</span>
       <input type="text"
-             class="mt-3"
+             class="mt-3 mx-3 inp_style"
              pInputText
              [(ngModel)]="cardNumber"/>
     </div>
