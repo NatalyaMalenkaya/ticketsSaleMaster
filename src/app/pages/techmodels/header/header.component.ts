@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
    time: Date;
    user: IUser | null;
    userName: string;
-   private settingsActive = false;
+   private accountActive = false;
 
    private timerInterval: number;
 
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         label: 'Личный кабинет',
-        routerLink:['settings'],
+        routerLink:['account'],
       },   
       {
         label: 'Настройки',
@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
  /* ngOnChanges(ev: SimpleChanges): void {
     if (ev['menuType']) {
-      this.settingsActive = this.menuType?.type === "extended";
+      this.accountActive = this.menuType?.type === "extended";
     this.items = this.initMenuItems();}
   }
   initMenuItems():MenuItem[] {
@@ -79,8 +79,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         label: 'Личный кабинет',
-        routerLink:['settings'],
-        visible: this.settingsActive
+        routerLink:['account'],
+        visible: this.accountActive
       },
       
 

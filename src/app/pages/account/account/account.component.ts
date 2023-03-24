@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ObservableExampleService} from '../../../services/testing/observable-example.service';
 import {Subject, Subscription, take, takeUntil} from 'rxjs';
-import {SettingsService} from '../../../services/settings/settings.service';
+import { AccountService } from 'src/app/services/account/account.service';
 import {AuthService} from "../../../services/auth/auth.service";
 import {MessageService} from "primeng/api";
 import {UserService} from "../../../services/user/user.service";
@@ -13,11 +13,11 @@ import { ServerError } from 'src/app/models/error';
 
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class SettingsComponent implements OnInit, OnDestroy {
+export class AccountComponent implements OnInit, OnDestroy {
      private subjectScore: Subject<any>;
      private subjectForUnsubscribe = new Subject();
 
@@ -27,12 +27,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
      currentPsw: string;
    
 
-  //settingsData: Subscription;
-    // settingsDataSubject: Subscription;
+  //accountData: Subscription;
+    // accountDataSubject: Subscription;
     // private subjectUnsubscribe: Subscription;
 
   constructor(private  testing: ObservableExampleService,
-              private settingsService: SettingsService,
+              private accountService: AccountService,
               private authService: AuthService,
               private messageService: MessageService,
               private userService: UserService,
@@ -45,14 +45,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
    //  console.log('data', data)
    // });
    // this.subjectScore.next('subData');
-    this.settingsService.loadUserSettings().pipe(takeUntil(this.subjectForUnsubscribe)).subscribe((data) => {
-      console.log('settings data', data)
+    this.accountService.loadUserAccount().pipe(takeUntil(this.subjectForUnsubscribe)).subscribe((data) => {
+      console.log('account data', data)
     });
-   this.settingsService.getSettingsSubjectObservable().pipe(takeUntil(this.subjectForUnsubscribe)).subscribe((data) => {
-      console.log('settings data from subject', data)
+   this.accountService.getAccountSubjectObservable().pipe(takeUntil(this.subjectForUnsubscribe)).subscribe((data) => {
+      console.log('account data from subject', data)
     })
-    //this.settingsService.getSettingsSubjectObservable().pipe(take(1)).subscribe((data) => {
-    //  console.log('settings data from subject', data)
+    //this.accountService.getAccountSubjectObservable().pipe(take(1)).subscribe((data) => {
+    //  console.log('account data from subject', data)
     //})
   }
 

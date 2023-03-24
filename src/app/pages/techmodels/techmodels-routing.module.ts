@@ -17,8 +17,8 @@ const routes: Routes = [
         loadChildren: () => import('../techmodel-info/techmodel-info.module').then(m => m.TechmodelInfoModule)
       },
       {
-        path: 'settings',
-        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule)
+        path: 'account',
+        loadChildren: () => import('../account/account.module').then(m => m.AccountModule)
       },
       {
         path: 'feedback',

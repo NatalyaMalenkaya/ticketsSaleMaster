@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SettingsRoutingModule } from './settings-routing.module';
-import { SettingsComponent } from './settings/settings.component';
+import { AccountRoutingModule } from './account-routing.module';
+import { AccountComponent } from './account/account.component';
 import {TabViewModule} from "primeng/tabview";
 import {InputTextModule} from "primeng/inputtext";
 import {ToastModule} from "primeng/toast";
@@ -15,13 +15,13 @@ import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
-    SettingsComponent,
+    AccountComponent,
     StatisticComponent,
    // TourLoaderComponent
   ],
   imports: [
     CommonModule,
-    SettingsRoutingModule,
+    AccountRoutingModule,
     ReactiveFormsModule,
     TabViewModule,
     InputTextModule,
@@ -32,4 +32,4 @@ import {TableModule} from "primeng/table";
     TableModule
   ]
 })
-export class SettingsModule { }
+export class AccountModule { }

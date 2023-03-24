@@ -3,7 +3,7 @@ import {IMenuType} from '../../../models/menuType';
 import {ITechnicTypeSelect, IWeightTypeSelect} from '../../../models/technics';
 import {TechnicService} from '../../../services/techmodels/techmodels.service';
 import {MessageService} from "primeng/api";
-import {SettingsService} from '../../../services/settings/settings.service';
+import { AccountService } from 'src/app/services/account/account.service';
 //import { subscribeOn } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { ITechnic } from '../../../models/technics';
@@ -40,7 +40,7 @@ export class AsideComponent implements OnInit {
   @Output() updateMenuType: EventEmitter<IMenuType> = new EventEmitter()
 
   constructor(private technicService: TechnicService,
-              private settingsService: SettingsService,
+              private accountService: AccountService,
               private messageService: MessageService,
               private http: HttpClient
               ) { }
@@ -82,8 +82,8 @@ export class AsideComponent implements OnInit {
       complete: () => {}
     })
   }*/
-  initSettingsData(): void {
-    this.settingsService.loadUserSettingsSubject({
+  initAccountData(): void {
+    this.accountService.loadUserAccountSubject({
         saveToken: false
       });
   }

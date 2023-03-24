@@ -14,8 +14,8 @@ const routes: Routes = [
     loadChildren: ()  => import('./pages/techmodels/techmodels.module').then(m => m.TicketsModule)
   },
   {
-    path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsModule)
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'feedback',

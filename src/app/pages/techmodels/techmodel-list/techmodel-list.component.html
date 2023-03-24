@@ -30,7 +30,7 @@
                (click)="goToTechmodelInfoPage(item)"
                 *ngFor="let item of techmodels; let i=index">
     <div class="techmodel-title"> {{item.name}}</div>
-    <div class="techmodel-title"> {{item.price}} р./смена</div>
+    <div class="techmodel-title"> от {{item.price}} р./смена</div>
     <div class="techmodel-img">
       <img class="w-100" src="http://localhost:3000/public/{{item.img}}">
     </div>
