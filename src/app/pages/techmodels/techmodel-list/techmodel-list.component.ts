@@ -26,7 +26,7 @@ export class TechmodelListComponent implements OnInit {
    technicUnsubscriber: Subscription
 
   @ViewChild('ticketSearch')ticketSearch: ElementRef;
-  searchTicketSub: Subscription;
+  searchTechmodelSub: Subscription;
   ticketSearchValue: string;
 
   constructor(private technicService: TechnicService,
@@ -125,7 +125,7 @@ export class TechmodelListComponent implements OnInit {
             
               ngAfterViewInit() {
                 const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, "keyup");
-                this.searchTicketSub = fromEventObserver.pipe(
+                this.searchTechmodelSub = fromEventObserver.pipe(
                   debounceTime(200)).subscribe((ev:any)=>{
                     if (this.ticketSearchValue) {
                       this.techmodels = this.techmodelsCopy.filter((el) => el.name.toLowerCase().includes(this.ticketSearchValue.toLowerCase()));
@@ -139,7 +139,7 @@ export class TechmodelListComponent implements OnInit {
             ngOnDestroy()
             {
               this.technicUnsubscriber.unsubscribe();
-              this.searchTicketSub.unsubscribe();
+              this.searchTechmodelSub.unsubscribe();
             }
             
             

@@ -1,7 +1,4 @@
-<p-table [value]="users" [scrollable]="true">
- <!-- <button  type="button">Сформировать</button>-->
- <!--(click)="showBooking(order)"-->
- 
+<p-table [value]="orders" [paginator]="true" [rows]="10">
   <ng-template pTemplate="header">
     <tr>
       <th *ngFor="let col of cols">
@@ -9,19 +6,19 @@
       </th>
     </tr>
   </ng-template>
-    <ng-template pTemplate="body" let-user>
+    <ng-template pTemplate="body" let-orders>
       <tr>
-        <td *ngFor="let col of cols">
+       <!-- <td *ngFor="let col of cols">
           {{user[col.field]}}
-        </td>
-
+        </td>-->
         <td>{{orders.techName}}</td>
         <td>{{orders.firstName}}</td>
         <td>{{orders.cardNumber}}</td>
         <td>{{orders.workingTime}}</td>
         <td>{{orders.workingDay}}</td>
         <td>{{orders.workingLocation}}</td>
-       
-
+        
       </tr>
     </ng-template>
+</p-table>
+

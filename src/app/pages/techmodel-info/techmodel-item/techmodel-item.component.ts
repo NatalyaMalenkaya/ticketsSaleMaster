@@ -26,7 +26,7 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
   similiarTechnics: ISimiliarTechnic[];
   technicsTitle: ITechnicTitle[];
   @ViewChild('ticketSearch') ticketSearch: ElementRef;
-  searchTicketSub: Subscription;
+  searchTechmodelSub: Subscription;
   ticketRestSub: Subscription;
   searchTypes = [1,2,3]
 
@@ -104,7 +104,7 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
 
   
   ngOnDestroy(): void {
-    this.searchTicketSub.unsubscribe();
+    this.searchTechmodelSub.unsubscribe();
   }
 
   

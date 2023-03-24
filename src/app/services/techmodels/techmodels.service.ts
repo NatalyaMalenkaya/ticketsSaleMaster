@@ -3,6 +3,7 @@ import {TicketRestService} from '../rest/techmodel-rest.service';
 import {map, Observable, Subject} from 'rxjs';
 import {ITechnic, ISimiliarTechnic, ITechnicTitle} from '../../models/technics';
 import { ITechnicTypeSelect, ICustomTicketData , IWeightTypeSelect} from '../../models/technics';
+import { IOrder } from 'src/app/models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,9 @@ export class TechnicService {
     return this.TechnicServiceRest.getTicketById(id);
   }
 
+  getOrders(userId: string): Observable<IOrder[]> {
+    return this.TechnicServiceRest.getOrders(userId);
+  }
 
 
   createTour(body: any) {

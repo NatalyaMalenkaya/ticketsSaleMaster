@@ -1,4 +1,4 @@
-<h2>Оставить отзыв</h2>
+<h2 class="mx-3">Оставить отзыв</h2>
 <div class="wrapper_feedb">
 <div>
   <span class="mx-3 style_reg">Ваше имя </span>
@@ -6,19 +6,15 @@
         class="mx-3 "
          class="style_inp_1"
          pInputText
-         
          [(ngModel)]="name"/>
 </div>
   <div>
     <span class="mx-3 style_reg">Ваш отзыв</span>
     <input type="text"
           class="pole_vvoda"
-           
            pInputText
-           
            [(ngModel)]="feedback"/>
   </div>
-
 <div class="mt-5 d-flex justify-content-center ">
   <button 
           (click)="sendFeedback($event)"
@@ -50,6 +46,4 @@
   Андрей:<br>
   Хотим поблагодарить RoemvSpb за длительное сотрудничество с нашей строительной компанией. Всегда все оперативно делают и доставляют. 
 </div>
-
-
 </div>

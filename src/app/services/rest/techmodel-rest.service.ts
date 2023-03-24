@@ -41,6 +41,10 @@ export class TicketRestService {
     return this.http.get<ITechnic>('http://localhost:3000/technics/' + id);
   }
 
+  getOrders(userId: string): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>('http://localhost:3000/order/'+userId)
+  }
+
   createTour(body: any): Observable<any> {
     return this.http.post('http://localhost:3000/technic-item', body, {headers: {}});
   }

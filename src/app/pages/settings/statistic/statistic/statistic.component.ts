@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ICustomStatisticUser} from '../../../../models/users';
-import {StatisticRestService} from '../../../../services/rest/statistic-rest/statistic-rest.service';
+//import {ICustomStatisticUser} from '../../../../models/users';
+import { StatisticRestService } from 'src/app/services/rest/statistic-rest/statistic-rest.service';
 import {StatisticService} from '../../../../services/statistic/statistic.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { IUser } from '../../../../models/users';
 import { IOrder } from 'src/app/models/order';
-
+//import { ICustomStatisticOrder, IOrder } from 'src/app/models/order';
+import { OrderService } from 'src/app/services/order/order.service';
+import {TechnicService} from 'src/app/services/techmodels/techmodels.service';
+import { IUser } from 'src/app/models/users';
 
 @Component({
   selector: 'app-statistic',
@@ -15,49 +17,71 @@ import { IOrder } from 'src/app/models/order';
 export class StatisticComponent implements OnInit {
  cols = [
    {field: 'techName', header: 'Наименование спецтехники'},
-   {field: 'name', header: 'Имя'},
+   {field: 'firstName', header: 'Имя'},
    {field: 'cardNumber', header: 'Номер карты'},
    {field: 'workingTime', header: 'Срок выполнения'},
    {field: 'workingDay', header: 'Дата выполнения'},
    {field: 'workingLocation', header: 'Место выполнения'}
  ];
- users: ICustomStatisticUser[];
+ 
+ /*orders: IOrder[];*/
 
-  user: IUser | any;
-  orders: IOrder[] | any;
-  techName: string | any;
-  name: string | any;
-  cardNumber: number;
-  workingTime: string | any;
-  workingDay: string | any;
-  workingLocation: string | any;
+ orders: IOrder[] | any;
+ user: IUser | any;
 
-  constructor(private statisticService: StatisticService,
-    private userService: UserService,
-   /* private orderService: OrderService*/) { }
+ constructor(
+  
+  private orderService: OrderService,
+  private userService: UserService,
+) {
+}
 
-  /*ngOnInit(): void {
-    this.statisticService.getUserStatistic().subscribe((data) => {
-      this.users = data;
-    })
-  }*/
 
- /* ngOnInit(): void {
-    this.initOrders();
-  }
+ngOnInit(): void {
+  this.initOrders();
+  
+}
 
-  initOrders(): void {
-    const userId = <string>this.userService.getUser()?.id;  
-    this.userService.getUserById(userId).subscribe((data) => {
-    this.loadUserOrders(userId);
-    });
-  }
- loadUserOrders(id: string) {
+initOrders(): void {
+  const userId = <string>this.userService.getUser()?.id;  // получаю id пользователя
+  this.userService.getUserById(userId).subscribe((data) => {
+    this.user = data;
+    if (this.user) {
+      this.loadUserOrders(userId);
+    }
 
-    this.orderService.getOrders(id).subscribe((data) => {
-      this.orders = data;
-    });
-  }*/
+   
+  });
+}
 
+
+loadUserOrders(id: string) {
+
+  this.orderService.getOrders(id).subscribe((data) => {
+    this.orders = data;// получаю все заказы пользователя
+ 
+  });
+}
+
+/*ngOnInit(): void {
+  this.getData();
+}
+
+getData(): void {
+  this.orderService.getOrderAll().subscribe((data) => {
+    this.orders = data;
+  });
+
+}*/
+/* constructor(private technicService: TechnicService) { }
+
+ ngOnInit(): void {
+ 
+   this.technicService.getOrders('all').subscribe((data: IOrder[]) => {
+     this.orders = data;
+   })
+ }*/
 
 }
+
+

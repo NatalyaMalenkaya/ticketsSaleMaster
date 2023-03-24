@@ -4,7 +4,7 @@ import {ITechnicTypeSelect, IWeightTypeSelect} from '../../../models/technics';
 import {TechnicService} from '../../../services/techmodels/techmodels.service';
 import {MessageService} from "primeng/api";
 import {SettingsService} from '../../../services/settings/settings.service';
-import { subscribeOn } from 'rxjs';
+//import { subscribeOn } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { ITechnic } from '../../../models/technics';
 

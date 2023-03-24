@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {TechmodelsComponent} from './techmodels.component'
 import {TechmodelListComponent} from './techmodel-list/techmodel-list.component'
-import { FeedbackComponent } from '../feedback/feedback.component';
 import { ForAdminComponent } from '../for-admin/for-admin.component';
 
 const routes: Routes = [

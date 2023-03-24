@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {map, Observable} from 'rxjs';
-import {ICustomStatisticUser, IStatisticUser} from '../../models/users';
+import {  IOrder } from 'src/app/models/order';
+//import {ICustomStatisticUser, IStatisticUser} from '../../models/users';
 import {StatisticRestService} from '../rest/statistic-rest/statistic-rest.service';
 
 
@@ -8,26 +10,22 @@ import {StatisticRestService} from '../rest/statistic-rest/statistic-rest.servic
   providedIn: 'root'
 })
 export class StatisticService {
+  private order: IOrder | null;
+  constructor(private http: HttpClient) {
+  }
 
-  constructor(private statisticUserRest: StatisticRestService) { }
+  getOrders(userId: string) {
+    return this.http.get("http://localhost:3000/order/" + userId)
+  }
+  getOrderAll() {
+    return this.http.get("http://localhost:3000/order/")
+  }
 
- /*getUserStatistic(): Observable<ICustomStatisticUser[]> {
-   return this.statisticUserRest.getUserStatistic().pipe(
-     map((data: IStatisticUser[]) => {
-       const newDataArr: ICustomStatisticUser[] = [];
-       data.forEach((el) => {
-         const newDataObj: ICustomStatisticUser = {
-           id: el.id,
-           name: el.name,
-           city: el.address.city,
-           company: el.company.name,
-           phone: el.phone,
-           street: el.address.street,
-         };
-         newDataArr.push(newDataObj);
-       })
-       return newDataArr;
-     })
-   )
+
+ // constructor(private statisticUserRest: StatisticRestService) { }
+
+  /*getUserStatistic(): Observable<IOrder[]> {
+   return this.statisticUserRest.getUserStatistic()
   }*/
 }
+
