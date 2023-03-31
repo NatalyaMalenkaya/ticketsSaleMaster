@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from 'rxjs';
 import {  IOrder } from 'src/app/models/order';
-//import {ICustomStatisticUser, IStatisticUser} from '../../models/users';
 import {StatisticRestService} from '../rest/statistic-rest/statistic-rest.service';
 
 
@@ -21,11 +20,5 @@ export class StatisticService {
     return this.http.get("http://localhost:3000/order/")
   }
 
-
- // constructor(private statisticUserRest: StatisticRestService) { }
-
-  /*getUserStatistic(): Observable<IOrder[]> {
-   return this.statisticUserRest.getUserStatistic()
-  }*/
 }
 
