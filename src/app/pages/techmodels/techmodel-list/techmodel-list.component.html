@@ -21,10 +21,8 @@
 <div appBlocksStyle
      *ngIf="techmodels"
      #technicWrap
-     #blockDirective='blocksStyle'
-     [selector]="'.techmodel-item'"
-     [initFirst]= "false"
-     (renderComplete) = "directiveRenderComplete($event)"
+     
+    
      class="d-flex flex-wrap justify-content-around">
   <div class="techmodel-item col-3 m-2"
                (click)="goToTechmodelInfoPage(item)"

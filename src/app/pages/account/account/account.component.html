@@ -1,13 +1,10 @@
 <div>
     <p-tabView class="account_style">
-
       <p-tabPanel   header="Мои бронирования">
         <ng-template pTemplate="content">
           <app-statistic></app-statistic>
         </ng-template>
-    </p-tabPanel>
-
-
+      </p-tabPanel>
       <p-tabPanel  header="Смена пароля">
         <ng-template pTemplate="content">
        <div>
@@ -18,7 +15,6 @@
                  [ngClass]="{'input-error': !currentPsw}"
                  [(ngModel)]="currentPsw"/>
         </div>
-
         <div>
   <span class="mx-3 account-psw">Новый пароль</span>
   <input type="password"
@@ -27,7 +23,6 @@
          [ngClass]="{'input-error': !newPsw}"
          [(ngModel)]="newPsw"/>
         </div>
-
        <div>
       <span class="mx-3 account-psw">Повтор нового пароля</span>
        <input type="password"
@@ -36,27 +31,14 @@
          [ngClass]="{'input-error': !repeatNewPsw}"
          [(ngModel)]="repeatNewPsw"/>
        </div>
-
        </div>
-
-
-          <div class="mx-5 d-flex justify-content-left">
+        <div class="mx-5 d-flex justify-content-left">
       <button (click)="passwordChange($event)" type="button" class="mx-3 mt-5 btn btn-success">Изменить пароль</button>
      </div>
         </ng-template>
-
       </p-tabPanel>
-
-<!--
-  <p-tabPanel header="Загрузка техники">
-    <ng-template pTemplate="content">
-      <app-technic-loader></app-technic-loader>
-    </ng-template>
-</p-tabPanel>-->
-
     </p-tabView>
 </div>
-
 <p-toast position="top-center"></p-toast>
 
 

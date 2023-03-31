@@ -9,6 +9,9 @@ import {
   OnInit,
   SimpleChanges
         } from '@angular/core';
+import { Router } from '@angular/router';
+import { ITechnic } from '../models/technics';
+
 
 @Directive({
   selector: '[appBlocksStyle]',
@@ -24,8 +27,9 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
   private items: HTMLElement[];
   private index: number = 0;
   public activeElementIndex: number;
+  private technics: ITechnic[]
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private router: Router) { }
 
   ngOnInit():void {
 
@@ -58,17 +62,27 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
       this.index++;
       if(this.index >= this.items.length)
         this.index = 0;
-      this.initStyle(this.index)
+     // this.initStyle(this.index)
 
     } else if (ev.key === 'ArrowLeft'){
       this.index--;
       if(this.index < 0)
         this.index = (this.items.length > 0) ? this.items.length - 1 : 0;
-      this.initStyle(this.index)
+     // this.initStyle(this.index)
 
     }
-    this.activeElementIndex = this.index
+    if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') {
+      this.initStyle(this.index);
+      const element = (this.items[this.index] as HTMLElement);
+      element.scrollIntoView({behavior: "smooth", block: "center", inline: "start"})
+    }
+    this.activeElementIndex = this.index;
+    if (ev.key === 'Enter'|| ev.key === ' ') {
+      const item = this.technics[this.activeElementIndex]
+      this.router.navigate([`/tickets/ticket/${item._id}`])
+    }
   }
+
   initStyle(index: number) {
      if(this.items[index]) {
        (this.items[index] as HTMLElement).setAttribute('style','border: 2px solid green')
@@ -77,6 +91,9 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
   updateItems(): void {
     this.items = this.el.nativeElement.querySelectorAll(this.selector);
   }
+  initTechnics(technics:ITechnic[]): void {
+    this.technics = technics;
+ }
 
 }
 

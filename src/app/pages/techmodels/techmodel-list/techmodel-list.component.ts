@@ -3,7 +3,7 @@ import {TechnicService} from "../../../services/techmodels/techmodels.service";
 import {ITechnic} from '../../../models/technics';
 import { TechmodelsStorageService } from 'src/app/services/techmodels-storage/techmodels-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BlocksStyleDirective} from '../../../directive/blocks-style.directive';
+//import {BlocksStyleDirective} from '../../../directive/blocks-style.directive';
 import {Subscription, fromEvent, debounceTime} from 'rxjs';
 import {ITechnicTypeSelect} from '../../../models/technics'
 
@@ -19,7 +19,7 @@ export class TechmodelListComponent implements OnInit {
   defaultDate: string;
   
 
-  @ViewChild('technicWrap', {read: BlocksStyleDirective}) blockDirective: BlocksStyleDirective
+ // @ViewChild('technicWrap', {read: BlocksStyleDirective}) blockDirective: BlocksStyleDirective
 
   @ViewChild('technicWrap')  technicWrap: ElementRef
 
@@ -96,12 +96,12 @@ export class TechmodelListComponent implements OnInit {
                   }
 
                   this.techmodels = [...data];
-                  setTimeout(() => {
+                 /* setTimeout(() => {
             
                     this.blockDirective.updateItems();
             
                     this.blockDirective.initStyle(0);  // сбрасываем индекс на 0 элемент
-                  });
+                  });*/
             
                 });
 
@@ -116,12 +116,12 @@ export class TechmodelListComponent implements OnInit {
                this.router.navigate(['/techmodels/techmodel'], {queryParams: {id: item._id}})
               }
             
-                  directiveRenderComplete(ev: boolean) {
+                 /* directiveRenderComplete(ev: boolean) {
                   const el: HTMLElement = this.technicWrap.nativeElement;
                   //el.setAttribute('style', 'background-color:#ebf8e1');
                   this.blockDirective.initStyle(3);
                   this.loadCountBlock = true;
-                }
+                }*/
             
               ngAfterViewInit() {
                 const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, "keyup");

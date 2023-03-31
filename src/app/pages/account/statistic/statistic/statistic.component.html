@@ -15,7 +15,7 @@
         <td>{{orders.firstName}}</td>
         <td>{{orders.cardNumber}}</td>
         <td>{{orders.workingTime}}</td>
-        <td>{{orders.workingDay}}</td>
+        <td>{{orders.workingDay | date:'dd/MM/yyyy' }}</td>
         <td>{{orders.workingLocation}}</td>
         
       </tr>

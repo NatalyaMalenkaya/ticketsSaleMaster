@@ -104,9 +104,10 @@ export class TechmodelItemComponent implements OnInit, AfterViewInit, OnDestroy 
 
   
   ngOnDestroy(): void {
+    if(this.searchTechmodelSub){
     this.searchTechmodelSub.unsubscribe();
   }
-
+  }
   
   initSearchTour(name: string): void {
     this.ticketRestSub = this.technicService.getRandomNearestEvent(name).subscribe((data) => {

@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TechmodelListComponent } from './techmodel-list/techmodel-list.component';
 import { AsideComponent } from './aside/aside.component';
 import {MenubarModule} from 'primeng/menubar';
-import {BlocksStyleDirective} from '../../directive/blocks-style.directive';
+//import {BlocksStyleDirective} from '../../directive/blocks-style.directive';
 import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
@@ -23,7 +23,7 @@ import {ToastModule} from 'primeng/toast';
     FooterComponent,
     TechmodelListComponent,
     AsideComponent,
-    BlocksStyleDirective
+   // BlocksStyleDirective
   ],
   imports: [
     CommonModule,
